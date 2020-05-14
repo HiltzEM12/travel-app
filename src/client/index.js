@@ -1,15 +1,12 @@
-import { updateSummary } from './js/serverFunctions'
-import { handleSubmit } from './js/formHandler'
-import { htmlValid } from './js/formHandler'
+// Import needed functions
+import { callGeoAPI } from './js/geoNames'
+import { placeButtonClick } from './js/domHandler'
 
-import './styles/resets.scss'
-import './styles/base.scss'
-import './styles/form.scss'
-import './styles/footer.scss'
-import './styles/header.scss'
+//Import css (SASS in this case) files
+import './styles/style.scss'
 
+//Export functions to use
 export {
-    handleSubmit,
-    updateSummary,
-    htmlValid
+    placeButtonClick,
+    callGeoAPI
 }

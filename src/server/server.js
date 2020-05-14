@@ -1,5 +1,5 @@
-// Setup empty JS object to act as endpoint for all routes
-projectData = {};
+// Use this to use fetch
+const fetch = require('node-fetch')
 
 // Require Express to run server and routes
 const express = require('express');
@@ -20,34 +20,36 @@ const cors = require('cors');
 app.use(cors());
 
 // Initialize the main project folder
-app.use(express.static('website'));
+app.use(express.static('dist'));
 
 
 // Setup Server
 
 // Define what port to use
-const port = 8000;
+const port = 3000;
 
 // Callback function for the server listener
 function listening() {
-    console.log('Weather Jounal App Server running');
+    console.log('Travel App Server running');
     console.log(`Running on localhost: ${port}`);
 }
 
 // Initiate a server.  Takes the port and a callback function
 const server = app.listen(port, listening);
 
-// GET route
-app.get('/weather', function (request, response) {
-    response.send(projectData);
-});
 
-// POST route
-app.post('/weather', function (request, response) {
+//Previous get and posts from the weather app
+// // GET route
+// app.get('/weather', function (request, response) {
+//     response.send(projectData);
+// });
 
-    projectData.temperature = request.body.temperature;
-    projectData.date = request.body.date;
-    projectData.userResponse = request.body.userResponse;
+// // POST route
+// app.post('/weather', function (request, response) {
 
-    response.send(projectData);
-});
+//     projectData.temperature = request.body.temperature;
+//     projectData.date = request.body.date;
+//     projectData.userResponse = request.body.userResponse;
+
+//     response.send(projectData);
+// });
