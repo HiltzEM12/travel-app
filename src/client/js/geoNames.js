@@ -18,7 +18,8 @@ const geoUID  = 'HiltzEM12'
 async function callGeoAPI(place) {
     //console.log('In callGeoAPI');
     const apiURL = geoURL + place + '&username=' + geoUID;
-
+    console.log('before UID retreivel')
+    //getGeoUserID();
     try {
         // Call the GEO API
         const request = await fetch(apiURL)
@@ -70,6 +71,20 @@ async function processGeoRes(res){
     // Update the dropdown list for the user to choose
     await Client.updatePlaceDD(placeDetails);
 }
+
+// async function getGeoUserID(){
+//     const request = await fetch('/geo');
+//     try {
+//         const newData = await request.json(); // Get the JSON from the server
+//         // Set the divs
+//         console.log(request);
+//         console.log(newData);
+//         console.log(newData.uid);
+//     } catch (error) {
+//         console.log('error', error);
+//     }
+
+// }
 
 export { 
     callGeoAPI

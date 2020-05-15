@@ -1,11 +1,13 @@
-// Use this to use fetch
-const fetch = require('node-fetch')
-
 // Require Express to run server and routes
 const express = require('express');
 
 // Start up an instance of app
 const app = express();
+
+//User ID for geoNames
+const geoID = {
+    uid: process.env.GEO_USER_ID
+}
 
 /* Middleware*/
 // Here we are configuring express to use body-parser as middle-ware.
@@ -37,6 +39,11 @@ function listening() {
 // Initiate a server.  Takes the port and a callback function
 const server = app.listen(port, listening);
 
+// // Get the geoNames user ID
+// app.get('/geo', function (request, response) {
+//     console.log('getting UID')
+//     response.send(geoID);
+// });
 
 //Previous get and posts from the weather app
 // // GET route

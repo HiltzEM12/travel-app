@@ -11,7 +11,14 @@ This project requires you to create an asynchronous web app that uses Web API an
 2. Run npm run build to create the dist folder
 3. Create an account with GeoNames: http://www.geonames.org/export/web-services.html
 4. Call the GeoNames API to get the lat/lon and country of a given city
-
+5. Put list of results from GeoNames into a dropdown
+6. Have user select the trip date
+7. Use weatherbit.io to get the weather.  This part is slightly confusing since the directions are a bit wierd.
+```
+If the trip is within a week, you will get the current weather forecast.
+If the trip is in the future, you will get a predicted forecast.
+```
+- I interpreted this to mean, get the current weather of the location and get the forcast if the trip is within 16 days.  There's no forcast pst 16 days
 
 ## Notes
 Tips:
