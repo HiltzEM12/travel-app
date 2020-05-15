@@ -16,44 +16,18 @@ body{
     font-family: 'Oswald', sans-serif;
 }
 
-// .holder{
-
-// }
-
 .entry{
     background: rgba(59, 74, 107, .4);
 }
-
-// #entryHolder{
-
-// }
-
-// #date{
-
-// }
-
-// #temp{
-
-// }
-
-// #content{
-
-// }
-
-// .headline {
-
-// }
-// .title{
-
-// }
 
 /*  Basic Styling To Override Default For Basic HTML Elements */
 label{
     display:block;
     font-size: 27px;
+    margin: 10px;
 }
 
-input{
+.user-input{
     display:block;
     height: 60px;
     width: 320px;
@@ -62,6 +36,13 @@ input{
     font-size: 20px;
     font-family: 'Oswald', sans-serif;
     border: none;
+    margin: 10px;
+    padding: 5px;
+}
+
+.user-input:focus{
+    background:#22da84;
+    color: #817324;
 }
 
 button{
@@ -110,6 +91,6 @@ button:focus {
 
 } 
 
-#get-info:hover {
+button:hover {
     cursor: pointer;
 }

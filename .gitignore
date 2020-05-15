@@ -2,3 +2,4 @@ node_modules
 dist
 .env
 geoResp.json
+geoResp2.json
