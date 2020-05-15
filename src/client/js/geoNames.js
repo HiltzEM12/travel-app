@@ -6,10 +6,6 @@ const geoURL = 'http://api.geonames.org/postalCodeSearchJSON?placename=';
 // Get user ID to use for the GeoNames API
 const geoUID  = 'HiltzEM12'
 
-// Place field
-const placeNameField = document.getElementById('place');
-
-
 // //Post rout for getting the lat/lon from a zip code
 // app.post('/geo', function (req, res) {
 //     console.log('In POST for geo', geoUID);
@@ -19,30 +15,34 @@ const placeNameField = document.getElementById('place');
 // });
 
 // Function for handling the API call to the geo site
-async function callGeoAPI() {
+async function callGeoAPI(place) {
     console.log('In callGeoAPI');
 
-    // Create url to use
-    const place = placeNameField.value
     const apiURL = geoURL + place + '&username=' + geoUID;
     // Call the GEO API
     const request = await fetch(apiURL)
     .then(res => res.json())  //Process the json
     .then(function(res) { // Use the lat lon info
-        console.log(res.postalCodes[0])
+        // make sure at least one result was returned
+        if('postalCodes' in res && res.postalCodes.length > 0){
+            console.log(res.postalCodes[0])
+        }
     });
 
-    //console.log('go fetch response: ', request.status);
-
-    // Throw an error on a 404
-    //if (request.status !== 400) throw new Error('Invalid place name or cannot return data');
-
     try {
-        return data;
+        return 0;
     } catch (error) {
         console.log('error in callGeoAPI', error);
     }
 };
+
+
+// Function to process the array of results from the API call
+// Only goes through the 1st 15
+// Use these to update the dropdown
+function processGeoRes(res){
+
+}
 
 
 
