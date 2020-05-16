@@ -1,5 +1,5 @@
 // Import needed functions
-import { callGeoAPI } from './js/geoNames'
+import { getGeoAPIData } from './js/geoNames'
 import { placeButtonClick } from './js/domHandler'
 import { updatePlaceDD } from './js/domHandler'
 import { setDates } from './js/domHandler'
@@ -11,7 +11,7 @@ import './styles/style.scss'
 //Export functions to use
 export {
     placeButtonClick,
-    callGeoAPI,
+    getGeoAPIData,
     updatePlaceDD,
     setDates,
     travelButtonClick

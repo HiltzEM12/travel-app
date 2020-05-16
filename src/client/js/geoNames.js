@@ -1,10 +1,10 @@
 // JavaScript file for handling the objects returned from GeoNames.org
 
-// url to use to get the lat/lon from geonames.org using a city or other named place
-const geoURL = 'http://api.geonames.org/postalCodeSearchJSON?placename=';
+// // url to use to get the lat/lon from geonames.org using a city or other named place
+// const geoURL = 'http://api.geonames.org/postalCodeSearchJSON?placename=';
 
-// Get user ID to use for the GeoNames API
-const geoUID  = 'HiltzEM12'
+// // Get user ID to use for the GeoNames API
+// const geoUID  = 'HiltzEM12'
 
 // //Post rout for getting the lat/lon from a zip code
 // app.post('/geo', function (req, res) {
@@ -14,27 +14,76 @@ const geoUID  = 'HiltzEM12'
 //     res.send(callGeoAPI(apiURL));
 // });
 
-// Function for handling the API call to the geo site
-async function callGeoAPI(place) {
-    //console.log('In callGeoAPI');
-    const apiURL = geoURL + place + '&username=' + geoUID;
-    console.log('before UID retreivel')
-    //getGeoUserID();
-    try {
-        // Call the GEO API
-        const request = await fetch(apiURL)
-        .then(res => res.json())  //Process the json
-        .then(function(res) { // Use the lat lon info
-            // make sure at least one result was returned
-            if('postalCodes' in res && res.postalCodes.length > 0){
-                processGeoRes(res.postalCodes);
-                //console.log(JSON.stringify(res))  //Use to get json example
-            }
-        });
-    } catch (error) {
-        console.log('error in callGeoAPI', error);
+async function getGeoAPIData(place){
+
+    // callAPI(place)
+    // .then(console.log(getData()))
+
+    //Post to the server with the sentence as an argument
+    try{
+    const res = await fetch('/geo', {
+        method: 'POST',
+        credentials: 'same-origin',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({'text': place}), // body data type must match 'Content-Type' header        
+    })
+    //.then(fetch('/geo'))
+    .then(res => res.json())
+    .then(function(res){
+        //console.log(res);
+        Client.updatePlaceDD(res);
+    })
+        //await console.log(fetch('/geo')))  //Process the json
+    }
+    catch(error){
+        console.log('error in callGeoAPI: ', error)
     }
 };
+
+// async function callAPI(place){
+//     await fetch('/geo', {
+//         method: 'POST',
+//         credentials: 'same-origin',
+//         headers: {
+//             'Content-Type': 'application/json',
+//         },
+//         body: JSON.stringify({'text': place}), // body data type must match 'Content-Type' header        
+//     })
+// }
+
+
+// async function getData(){
+//     const ret =  await fetch('/geo');
+//     return ret;
+// }
+
+
+// url to use to get the lat/lon from geonames.org using a city or other named place
+// const geoURL = 'http://api.geonames.org/postalCodeSearchJSON?placename=';
+
+// async function callGeoAPI(place) {
+//     //console.log('In callGeoAPI');
+//     const UID = await fetch('/geo')
+//     console.log(UID)
+//     const apiURL = geoURL + place + '&username=' + UID;
+    
+//     try {
+//         // Call the GEO API
+//         const request = await fetch(apiURL)
+//         .then(res => res.json())  //Process the json
+//         .then(function(res) { // Use the lat lon info
+//             // make sure at least one result was returned
+//             if('postalCodes' in res && res.postalCodes.length > 0){
+//                 processGeoRes(res.postalCodes);
+//                 //console.log(JSON.stringify(res))  //Use to get json example
+//             }
+//         });
+//     } catch (error) {
+//         console.log('error in callGeoAPI', error);
+//     }
+// };
 
 
 // Function to process the array of results from the API call
@@ -87,7 +136,7 @@ async function processGeoRes(res){
 // }
 
 export { 
-    callGeoAPI
+    getGeoAPIData
 };
 
 

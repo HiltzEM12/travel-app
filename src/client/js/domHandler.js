@@ -22,7 +22,7 @@ document.getElementById('get-travel-info').addEventListener('click', travelButto
 // Function to handle what to do when the place search button is clicked
 function placeButtonClick(event) {
     //Search for a place and let the user selct from the results
-    Client.callGeoAPI(placeNameField.value);
+    Client.getGeoAPIData(placeNameField.value);
 };
 
 // Add an array of place names to the place drop down
