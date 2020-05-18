@@ -32,7 +32,7 @@ async function getGeoAPIData(place){
     //.then(fetch('/geo'))
     .then(res => res.json())
     .then(function(res){
-        //console.log(res);
+        console.log(res);
         Client.updatePlaceDD(res);
     })
         //await console.log(fetch('/geo')))  //Process the json

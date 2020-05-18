@@ -1,7 +1,43 @@
-// function testFunc(){
-//     console.log('Test function worked')
-// };
+// JavaScript file for handling the objects returned from weatehrbit.io
 
+// fetch wasn't working on the server, but this fixed that
+const fetch = require("node-fetch");
+
+// For handling the .env variables
+const dotenv = require('dotenv');
+dotenv.config();
+
+// url to use to get the lat/lon from geonames.org using a city or other named place
+const geoURL = 'http://api.geonames.org/postalCodeSearchJSON?placename=';
+
+//User ID for geoNames
+const geoUID = process.env.GEO_USER_ID;
+
+// Function to call the API
+async function getGeoData(place){
+    const apiURL = geoURL + place + '&username=' + geoUID;
+    let geoData = []  // Data to return
+    try {
+        // Call the GEO API
+        await fetch(apiURL)
+        .then(res => res.json())
+        .then(async function(res) { 
+            // Make sure data was returned
+            if('postalCodes' in res && res.postalCodes.length > 0){
+                //console.log('Processed data',processGeoRes(res.postalCodes))
+                //geoData.push(processGeoRes(res.postalCodes))
+                geoData = processGeoRes(res.postalCodes);
+            }
+        })
+        // .then(function(res){
+        //    return res;
+        // })
+    } catch (error) {
+        console.log('error in getGeoData', error);
+    }
+    //console.log('geoData return',geoData)
+    return geoData;
+}
 
 // Function to process the array of results from the API call
 // Only goes through the 1st 15 or until the end of the list
@@ -40,5 +76,5 @@ async function processGeoRes(res){
 
 module.exports = {
     // testFunc,
-    processGeoRes
+    getGeoData
 }

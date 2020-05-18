@@ -3,6 +3,7 @@
 // fetch wasn't working on the server, but this fixed that
 const fetch = require("node-fetch");
 
+// For handling the .env variables
 const dotenv = require('dotenv');
 dotenv.config();
 

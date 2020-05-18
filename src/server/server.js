@@ -4,6 +4,7 @@
 var geoNames = require("./geoNamesSS");
 var weatherBit = require("./weatherBitSS");
 
+// For handling the .env variables
 const dotenv = require('dotenv');
 dotenv.config();
 
@@ -48,63 +49,48 @@ const server = app.listen(port, listening);
 
 
 //GeoName API calls***********************************************************************************************************
-// url to use to get the lat/lon from geonames.org using a city or other named place
-const geoURL = 'http://api.geonames.org/postalCodeSearchJSON?placename=';
+// // url to use to get the lat/lon from geonames.org using a city or other named place
+// const geoURL = 'http://api.geonames.org/postalCodeSearchJSON?placename=';
 
 // Get user ID to use for the GeoNames API
 //User ID for geoNames
-const geoUID = process.env.GEO_USER_ID;
-let geoData = {}; //Use to return the geo data found
+//const geoUID = process.env.GEO_USER_ID;
+//let geoData = {}; //Use to return the geo data found
 
 
 // POST rount for geoName API calls
 app.post('/geo', async function (request, response) {
     //console.log('In /geo post');
     place = request.body.text;
-    const apiURL = geoURL + place + '&username=' + geoUID;
+    //const apiURL = geoURL + place + '&username=' + geoUID;
     try {
         // Call the GEO API
-        await fetch(apiURL)
-        .then(res => res.json())
-        .then(function(res) { 
-            //console.log('api result');
-            //Process results then send
-            if('postalCodes' in res && res.postalCodes.length > 0){
-                //console.log(geoNames.processGeoRes(res.postalCodes));
-                //processGeoRes(res.postalCodes);
-                //console.log(JSON.stringify(res))  //Use to get json example
-                return geoNames.processGeoRes(res.postalCodes);
-            }
-            else {
-                return res;
-            }
-            //console.log(geoNames.processGeoRes(res));
-            //response.send(res);
-            //geoData = res;
-        })
-        .then(function(res){
-            response.send(res);
-        })
+        //console.log(geoNames.getGeoData(place))
+        const res = await geoNames.getGeoData(place)
+        // .then(res => res.json())
+        // .then(function(res){
+            //console.log('geo data response in server',res);
+            //console.log((res[0]).json());
+            //console.log(res[0]);
+        response.send(JSON.stringify(res));
+        // })
+        //console.log(res.Promise)
+        // .then(res => res.json())
+        // .then(function(res){
+        //     console.log('sdfdsfd');
+        //     console.log(res)
+        // })
+        // .then(res => res.json())
+        // .then(function(res){
+        //     response.send(res);
+        // })
     } catch (error) {
         console.log('error in getGeo', error);
     }
-    // //console.log(getGeo(place));
-    // await getGeo(place)
-    // //.then(res => res.json())
-    // .then(function (res){
-    //     console.log('sending api results');
-    //     response.send(res);
-    // });
 });
 
 
-
-
 //Weatherbit API calls***********************************************************************************************************
-// Get user ID to use for the GeoNames API
-//User ID for geoNames
-//const weatherKey = process.env.WEATHER_KEY;
-
 
 // POST route for getting the weather
 app.post('/weather', async function (request, response) {
