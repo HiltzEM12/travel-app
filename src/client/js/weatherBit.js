@@ -4,7 +4,7 @@
 // Argument is an object with a lat, lon, and date
 async function getForcastData(txt){
 
-    console.log('in getWeatherAPIData',txt);
+    //console.log('in getWeatherAPIData',txt);
     //Post to the server with the sentence as an argument
     try{
     const res = await fetch('/weather', {
@@ -16,7 +16,6 @@ async function getForcastData(txt){
         body: JSON.stringify({'text' :txt}),
         //body: JSON.stringify({'text': place}), // body data type must match 'Content-Type' header        
     })
-    //.then(fetch('/geo'))
     .then(res => res.json())
     .then(function(res){
         console.log(res);

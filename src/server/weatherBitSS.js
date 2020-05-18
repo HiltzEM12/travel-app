@@ -32,7 +32,7 @@ async function getWeatherData(tripDate, lat, lng){
     try {
         await getForcastData(tripDate, lat, lng)
         .then(function(res){
-            console.log('getWeatherData',res)
+            //console.log('getWeatherData',res)
             return res;
         })
         // if(forcastURL !== ''){
