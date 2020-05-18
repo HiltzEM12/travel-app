@@ -18,8 +18,8 @@ async function getForcastData(txt){
     })
     .then(res => res.json())
     .then(function(res){
-        console.log(res);
-        //Client.updatePlaceDD(res);
+        //console.log('UpdateWeather Call');
+        Client.updateWeather(res);
     })
         //await console.log(fetch('/geo')))  //Process the json
     }
