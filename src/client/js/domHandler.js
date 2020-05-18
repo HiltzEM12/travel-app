@@ -31,18 +31,21 @@ async function updatePlaceDD(arr){
 
     //1st clear out the old list
     placeDD.innerHTML = '';
+    if(arr.length > 0){ // Only process if there's something in the array
+        const docFrag = document.createDocumentFragment(); // Document frag to add to
+        arr.sort((x,y) => (x.place > y.place) ? 1 : -1); // Sort the array by place name 
 
-    const docFrag = document.createDocumentFragment(); // Document frag to add to
-    arr.sort((x,y) => (x.place > y.place) ? 1 : -1); // Sort the array by place name 
+        for (let i = 0; i < arr.length; i++) {
+            const opItem = document.createElement('option'); // Create the new option
+            opItem.value = '{ "lat": ' + arr[i].lat +', "lng": ' + arr[i].lng + '}'; // Add the lat lon as the values
+            opItem.textContent = arr[i].place;  // Add the place name as the text
+            docFrag.appendChild(opItem); // Add the item to the doc frag
+        }
 
-    for (let i = 0; i < arr.length; i++) {
-        const opItem = document.createElement('option'); // Create the new option
-        opItem.value = '{ lat: ' + arr[i].lat +', lng: ' + arr[i].lng + '}'; // Add the lat lon as the values
-        opItem.textContent = arr[i].place;  // Add the place name as the text
-        docFrag.appendChild(opItem); // Add the item to the doc frag
+        placeDD.appendChild(docFrag);
     }
 
-    placeDD.appendChild(docFrag);
+    
 };
 
 //Sets the min and max dates for the departure date clicker
@@ -60,24 +63,24 @@ function setDates(){
 
 // Function to handle what to do when the get travel info button is clicked
 function travelButtonClick(event) {
-
-    //if( placeDD.value && departure.value){
+    console.log('travelButtonClick')
+    if( placeDD.value && departure.value){
         //Split out the lat lon JSON
-        //console.log('latlon',placeDD.value)
-        //const latLng = JSON.parse(placeDD.value);
-        //console.log('latlon',latLng)
+        console.log('latlon',placeDD.value)
+        const latLng = JSON.parse(placeDD.value);
+        console.log('latlon',latLng)
 
-        // Client.getWeatherAPIData({
-        //     date: departure.value,
-        //     lat: latLng.lat,
-        //     lng: latLng.lng
-        // })
+        Client.getWeatherAPIData({
+            date: departure.value,
+            lat: latLng.lat,
+            lng: latLng.lng
+        })
         // console.log('latlon',placeDD.value)
         // console.log('date',departure.value)
-    // }
-    // else{
-    //     alert('Enter a place and a date')
-    // }
+    }
+    else{
+        alert('Enter a place and a date')
+    }
 };
 
 

@@ -59,7 +59,7 @@ let geoData = {}; //Use to return the geo data found
 
 // POST rount for geoName API calls
 app.post('/geo', async function (request, response) {
-    console.log('In /geo post');
+    //console.log('In /geo post');
     place = request.body.text;
     const apiURL = geoURL + place + '&username=' + geoUID;
     try {
