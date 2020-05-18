@@ -1,37 +1,131 @@
-body{
-    background: #fffff8;
+body {
+    background: #fcfce2;
     font-family: -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
-#app{
+// #app{
+//     display: grid;
+//     grid-auto-rows: minmax(150px, auto);
+//     /* grid-template-columns:  */
+//     height:100vh;
+//     background: #f23557;
+//     color: #f0d43a;
+//     justify-content: center;
+//     grid-gap: 1em;
+//     font-size: 20px;
+//     font-family: 'Oswald', sans-serif;
+// }
+
+.container {
     display: grid;
-    grid-auto-rows: minmax(150px, auto);
-    /* grid-template-columns:  */
-    height:100vh;
-    background: #f23557;
-    color: #f0d43a;
-    justify-content: center;
-    grid-gap: 1em;
-    font-size: 20px;
-    font-family: 'Oswald', sans-serif;
+    height: 100%;
+    grid-template-rows: 10px, 20px, 1fr, 0.5fr, 10px;
+    grid-template-areas:
+        "title"
+        "search"
+        "trips"
+        "trips"
+        "ft";
+    grid-auto-rows: minmax(1fr, auto);
+    gap: 10px;
+    padding: 10px;
 }
 
-.entry{
+// @media (min-width:600px) {
+//     .container {
+//       grid-template-columns: repeat(8, 1fr);
+//       grid-template-rows: 10px, repeat(10, 1fr);
+//       grid-template-areas:
+//         "hd hd hd hd hd hd hd hd"
+//         "nav main main main main main main about"
+//         "ft ft ft ft ft ft ft ft";
+//     }
+//   }
+
+//Just one column across on small screens
+.place-search-grid {
+    display: grid;
+    grid-area: search;
+    grid-template-columns: 1fr;
+}
+
+//3 columns for medium screens
+@media (min-width: 600px) and (max-width:900px) {
+    .place-search-grid {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+
+//5 columns for large screens
+@media (min-width:901px) {
+    .place-search-grid {
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    }
+}
+
+//Just one column across on small screens
+.trips-grid {
+    display: grid;
+    grid-area: trips;
+    grid-template-columns: 1fr;
+}
+
+//2 columns for medium screens
+@media (min-width: 600px) and (max-width:900px) {
+    .trips-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+//3 columns for medium screens
+@media (min-width:901px) {
+    .trips-grid {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+
+
+.title-container {
+    grid-area: title;
+}
+
+.ft-container {
+    grid-area: ft;
+}
+
+
+/*For big and medium screens*/
+
+//   /*3 rows, nav on left small, small header and footer*/
+
+//   @media (min-width:600px) {
+//     .container {
+//       grid-template-columns: repeat(8, 1fr);
+//       grid-template-rows: 10px, repeat(10, 1fr);
+//       grid-template-areas:
+//         "title title title title title"
+//         "nav main main main main main main about"
+//         "ft ft ft ft ft ft ft ft";
+//     }
+//   }
+
+
+.entry {
     background: rgba(59, 74, 107, .4);
 }
 
 /*  Basic Styling To Override Default For Basic HTML Elements */
-label{
-    display:block;
-    font-size: 27px;
+label {
+    display: block;
+    font-size: 18px;
     margin: 10px;
 }
 
-.user-input{
-    display:block;
+.user-input {
+    display: block;
     height: 60px;
-    width: 320px;
-    background:#22b2da;
+    width: 3fr;
+    background: #22b2da;
     color: #f0d43a;
     font-size: 20px;
     font-family: 'Oswald', sans-serif;
@@ -40,13 +134,13 @@ label{
     padding: 5px;
 }
 
-.user-input:focus{
-    background:#22da84;
+.user-input:focus {
+    background: #22da84;
     color: #817324;
 }
 
-button{
-    width: 400px;
+button {
+    width: 5em;
     height: 100px;
     background: #3b4a6b;
     color: #f0d43a;
@@ -55,16 +149,18 @@ button{
     border: none;
     box-shadow: 2px 4px 5px #444;
 }
-h1{
+
+h1 {
     font-size: 36px;
 }
 
-textarea{
-    background:#22b2da;
+textarea {
+    background: #22b2da;
     color: #f0d43a;
     font-size: 20px;
     font-family: 'Oswald', sans-serif;
 }
+
 /* Reset style for HTML element on active to have no border*/
 input:focus,
 select:focus,
@@ -72,24 +168,32 @@ textarea:focus,
 button:focus {
     outline: none;
 }
+
 /* Style for Placeholder Text*/
-::placeholder { /* Firefox, Chrome, Opera */ 
-    color: #f0d43a; 
+::placeholder {
+    /* Firefox, Chrome, Opera */
+    color: #f0d43a;
     font-family: 'Oswald', sans-serif;
 
-} 
-  
-:-ms-input-placeholder { /* Internet Explorer 10-11 */ 
-    color: #f0d43a; 
+}
+
+:-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+    color: #f0d43a;
     font-family: 'Oswald', sans-serif;
 
-} 
-  
-::-ms-input-placeholder { /* Microsoft Edge */ 
-    color: #f0d43a; 
+}
+
+::-ms-input-placeholder {
+    /* Microsoft Edge */
+    color: #f0d43a;
     font-family: 'Oswald', sans-serif;
 
-} 
+}
+
+select{
+    width: 12em;
+}
 
 button:hover {
     cursor: pointer;

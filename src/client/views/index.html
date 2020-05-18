@@ -10,32 +10,35 @@
 </head>
 
 <body onload='Client.setDates()'>
+  <div class='holder'>
+    Travel App
+  </div>
   <div id='app'>
-    <div class='holder headline'>
-      Travel App
-    </div>
     <!-- place search field -->
-    <div class='holder place'>
-      <label class= 'place-search' for='place-search-txt'>Enter city or other place here</label>
-      <input type='text' class= 'place-search user-input' id='place-search-txt' placeholder='enter place here'>
+    <div class='place-search-grid'>
+      <div class='holder'>
+        <label for='place-search-txt'>Enter city or other place here</label>
+        <input type='text' class= 'user-input' id='place-search-txt' placeholder='enter place here'>
+      </div>
+      <div class='holder'>
+        <!-- Place search button -->
+        <button id='search-place-button' type='submit'> Search Places </button>
+      </div>
+      <!-- Place dropdown -->
+      <div class='holder'>
+        <label for='place-dropdown'>Choose a place from the list</label>
+        <select id='place-dropdown' class = 'user-input' name='place-dropdown'></select>
+      </div>
+      <div class='holder'>
+        <label for='departure'>Departure date:</label>
+        <input type='date' id='departure' class='user-input'>
+      </div>
+      <div class='holder'>
+        <!-- Place search button -->
+        <button id='get-travel-info' type='submit'> Get Travel Info </button>
+      </div>
     </div>
-    <div class='holder place'>
-      <!-- Place search button -->
-      <button id='search-place-button' type='submit'> Search Places </button>
-    </div>
-    <!-- Place dropdown -->
-    <div class='holder place'>
-      <label for='place-dropdown'>Choose a place from the list</label>
-      <select id='place-dropdown' class = 'user-input' name='place-dropdown'></select>
-    </div>
-    <div class='holder place'>
-      <label for='departure'>Departure date:</label>
-      <input type='date' id='departure' class='user-input'>
-    </div>
-    <div class='holder place'>
-      <!-- Place search button -->
-      <button id='get-travel-info' type='submit'> Get Travel Info </button>
-    </div>
+    <div class='trips-grid'></div>
     <!-- <div class='holder entry'>
       <div class='title'>Most Recent Entry</div>
       <div id='entryHolder'>
