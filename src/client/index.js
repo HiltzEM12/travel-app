@@ -1,5 +1,6 @@
 // Import needed functions
 import { getGeoAPIData } from './js/geoNames'
+import { getWeatherAPIData } from './js/weatherBit'
 import { placeButtonClick } from './js/domHandler'
 import { updatePlaceDD } from './js/domHandler'
 import { setDates } from './js/domHandler'
@@ -14,5 +15,6 @@ export {
     getGeoAPIData,
     updatePlaceDD,
     setDates,
-    travelButtonClick
+    travelButtonClick,
+    getWeatherAPIData
 }

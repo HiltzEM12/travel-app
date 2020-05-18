@@ -60,9 +60,24 @@ function setDates(){
 
 // Function to handle what to do when the get travel info button is clicked
 function travelButtonClick(event) {
-    //Search for a place and let the user selct from the results
-    console.log('latlon',placeDD.value)
-    console.log('date',departure.value)
+
+    //if( placeDD.value && departure.value){
+        //Split out the lat lon JSON
+        //console.log('latlon',placeDD.value)
+        //const latLng = JSON.parse(placeDD.value);
+        //console.log('latlon',latLng)
+
+        // Client.getWeatherAPIData({
+        //     date: departure.value,
+        //     lat: latLng.lat,
+        //     lng: latLng.lng
+        // })
+        // console.log('latlon',placeDD.value)
+        // console.log('date',departure.value)
+    // }
+    // else{
+    //     alert('Enter a place and a date')
+    // }
 };
 
 

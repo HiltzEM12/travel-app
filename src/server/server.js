@@ -2,6 +2,7 @@
 // projectData = {};
 
 var geoNames = require("./geoNamesSS");
+var weatherBit = require("./weatherBitSS");
 
 const dotenv = require('dotenv');
 dotenv.config();
@@ -95,6 +96,66 @@ app.post('/geo', async function (request, response) {
     //     response.send(res);
     // });
 });
+
+
+
+
+//Weatherbit API calls***********************************************************************************************************
+// Get user ID to use for the GeoNames API
+//User ID for geoNames
+const weatherKey = process.env.WEATHER_KEY;
+
+
+
+// POST rount for geoName API calls
+app.post('/weather', async function (request, response) {
+    //console.log('In /weather post');
+    //console.log('txt ',request.body.text);
+    // console.log('date ',request.body.text.date);
+    // console.log('date ',request.body.text.lat);
+    // console.log('date ',request.body.text.lng);
+    const tripDate = request.body.text.date;
+    const lat = request.body.text.lat;
+    const lng = request.body.text.lng;
+    weatherBit.getWeatherURL(tripDate)
+    //console.log('latLng ',request.body.text.latLng);
+    //console.log('lat ',request.body.text.latLng.json());
+    //console.log('lng ',request.body.text.latLng.lng);
+    //const apiURL = weatherCurrentURL + place + '&username=' + geoUID;
+    // try {
+    //     // Call the GEO API
+    //     await fetch(apiURL)
+    //     .then(res => res.json())
+    //     .then(function(res) { 
+    //         //console.log('api result');
+    //         //Process results then send
+    //         if('postalCodes' in res && res.postalCodes.length > 0){
+    //             //console.log(geoNames.processGeoRes(res.postalCodes));
+    //             //processGeoRes(res.postalCodes);
+    //             //console.log(JSON.stringify(res))  //Use to get json example
+    //             return geoNames.processGeoRes(res.postalCodes);
+    //         }
+    //         else {
+    //             return res;
+    //         }
+    //         //console.log(geoNames.processGeoRes(res));
+    //         //response.send(res);
+    //         //geoData = res;
+    //     })
+    //     .then(function(res){
+    //         response.send(res);
+    //     })
+    // } catch (error) {
+    //     console.log('error in getGeo', error);
+    // }
+});
+
+
+
+
+
+
+
 
 // GET route for geoName API calls
 // app.get('/geo', function (request, response) {

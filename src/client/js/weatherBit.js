@@ -1,18 +1,34 @@
 // JavaScript file for handling the objects returned from weatehrbit.io
 
-// url to use to get the current weather
-// Example: https://api.weatherbit.io/v2.0/current?&lat=38.123&lon=-78.543&key=API_KEY
-const currentURL = 'https://api.weatherbit.io/v2.0/current';
+// Function to get the data.
+// Argument is an object with a lat, lon, and date
+async function getWeatherAPIData(txt){
 
-// url to use to get the forcast
-// Example: https://api.weatherbit.io/v2.0/forecast/daily?&lat=38.123&lon=-78.543&key=API_KEY
-const currentURL = 'https://api.weatherbit.io/v2.0/forecast/daily';
+    console.log(txt);
+    //Post to the server with the sentence as an argument
+    try{
+    const res = await fetch('/weather', {
+        method: 'POST',
+        credentials: 'same-origin',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({'text' :txt}),
+        //body: JSON.stringify({'text': place}), // body data type must match 'Content-Type' header        
+    })
+    //.then(fetch('/geo'))
+    .then(res => res.json())
+    .then(function(res){
+        console.log(res);
+        //Client.updatePlaceDD(res);
+    })
+        //await console.log(fetch('/geo')))  //Process the json
+    }
+    catch(error){
+        console.log('error in getWeatherAPIData: ', error)
+    }
+};
 
-
-// Actual Instructions:
-//   If the trip is within a week, you will get the current weather forecast.
-//   If the trip is in the future, you will get a predicted forecast.
-
-// Interpreted instructions since the given instructions are illogical
-//   Get the current weather of the location
-//   Get the forcast if the trip is within 16 days
+export { 
+    getWeatherAPIData
+};
