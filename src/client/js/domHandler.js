@@ -66,9 +66,9 @@ function travelButtonClick(event) {
     console.log('travelButtonClick')
     if( placeDD.value && departure.value){
         //Split out the lat lon JSON
-        console.log('latlon',placeDD.value)
+        //console.log('latlon',placeDD.value)
         const latLng = JSON.parse(placeDD.value);
-        console.log('latlon',latLng)
+        //console.log('latlon',latLng)
 
         Client.getWeatherAPIData({
             date: departure.value,

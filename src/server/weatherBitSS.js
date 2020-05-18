@@ -18,11 +18,16 @@ const weatherForcastURL = 'https://api.weatherbit.io/v2.0/forecast/daily';
 
 //Function to get the weatehr url to use depending on when the date is
 function getWeatherURL(tripDate){
-    const curDate = Date.now();
+    //Get current date as just a date (remove times)
+    const today = new Date();
+    const todayYr = today.getFullYear();
+    const todayMo = today.getMonth();
+    const todayDay = today.getDate();
+    const curDate = new Date(todayYr, todayMo, todayDay);
     console.log('curDate',curDate)
     console.log('tripDate',tripDate)
     console.log('tripDate',Date.parse(tripDate))
-    console.log('Difference in days',(tripDate - curDate)/(1000 * 60 * 60 * 24));
+    console.log('Difference in days',(Date.parse(tripDate) - curDate)/(1000 * 60 * 60 * 24));
 }
 
 module.exports = {
