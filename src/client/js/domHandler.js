@@ -69,7 +69,7 @@ function travelButtonClick(event) {
         const latLng = JSON.parse(placeDD.value);
         //console.log('latlon',latLng)
 
-        Client.getWeatherAPIData({
+        Client.getForcastData({
             date: departure.value +'T00:00' , //Added the time to the date to avoid UTC issues
             lat: latLng.lat,
             lng: latLng.lng

@@ -103,51 +103,48 @@ app.post('/geo', async function (request, response) {
 //Weatherbit API calls***********************************************************************************************************
 // Get user ID to use for the GeoNames API
 //User ID for geoNames
-const weatherKey = process.env.WEATHER_KEY;
+//const weatherKey = process.env.WEATHER_KEY;
 
 
 
-// POST rount for geoName API calls
+// POST route for getting the weather
 app.post('/weather', async function (request, response) {
-    //console.log('In /weather post');
-    //console.log('txt ',request.body.text);
-    // console.log('date ',request.body.text.date);
-    // console.log('date ',request.body.text.lat);
-    // console.log('date ',request.body.text.lng);
     const tripDate = request.body.text.date;
     const lat = request.body.text.lat;
     const lng = request.body.text.lng;
-    weatherBit.getWeatherURL(tripDate)
+    //const forcastURL = weatherBit.getForcastURL(tripDate);
     //console.log('latLng ',request.body.text.latLng);
     //console.log('lat ',request.body.text.latLng.json());
     //console.log('lng ',request.body.text.latLng.lng);
-    //const apiURL = weatherCurrentURL + place + '&username=' + geoUID;
-    // try {
-    //     // Call the GEO API
-    //     await fetch(apiURL)
-    //     .then(res => res.json())
-    //     .then(function(res) { 
-    //         //console.log('api result');
-    //         //Process results then send
-    //         if('postalCodes' in res && res.postalCodes.length > 0){
-    //             //console.log(geoNames.processGeoRes(res.postalCodes));
-    //             //processGeoRes(res.postalCodes);
-    //             //console.log(JSON.stringify(res))  //Use to get json example
-    //             return geoNames.processGeoRes(res.postalCodes);
-    //         }
-    //         else {
-    //             return res;
-    //         }
-    //         //console.log(geoNames.processGeoRes(res));
-    //         //response.send(res);
-    //         //geoData = res;
-    //     })
-    //     .then(function(res){
-    //         response.send(res);
-    //     })
-    // } catch (error) {
-    //     console.log('error in getGeo', error);
-    // }
+    //console.log('In /weather post');
+    try {
+        if(forcastURL !== ''){
+            //const apiURL = forcastURL + '?&lat=' + lat + '&lon=' + lng +'&key=' + weatherKey + '&units=I';
+            //console.log(apiURL)
+            // Call the GEO API
+            await fetch(apiURL)
+            .then(res => res.json())
+            .then(function(res) { 
+                //Process results then send
+                //console.log(JSON.stringify(res))  //Use to get json example
+                if('data' in res && res.data.length > 0){
+                    console.log(weatherBit.processForcastData(res.data));
+                    return 1;
+                }
+                else {
+                    return res;
+                }
+            })
+            .then(function(res){
+                //response.send(res);
+            })
+        }
+        else {
+            response.send(''); //Send nothing.  Forcast is not applicable
+        }
+    } catch (error) {
+        console.log('error in getWeather', error);
+    }
 });
 
 

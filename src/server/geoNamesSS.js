@@ -12,7 +12,7 @@ async function processGeoRes(res){
     const placeDetails = []; // Array to store the place details
     // Go through the given array and create readable place names and get lat and lon
     for(let i = 0; i < res.length  && i < maxL; i++){
-        let placeInfo = {}; //Object to store into the array
+        //let placeInfo = {}; //Object to store into the array
         let tempName = ''; //Use to create the place name string
         if('placeName' in res[i]){
             tempName = res[i].placeName;

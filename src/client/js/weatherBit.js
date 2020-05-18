@@ -2,7 +2,7 @@
 
 // Function to get the data.
 // Argument is an object with a lat, lon, and date
-async function getWeatherAPIData(txt){
+async function getForcastData(txt){
 
     console.log('in getWeatherAPIData',txt);
     //Post to the server with the sentence as an argument
@@ -30,5 +30,5 @@ async function getWeatherAPIData(txt){
 };
 
 export { 
-    getWeatherAPIData
+    getForcastData
 };
