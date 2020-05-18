@@ -4,7 +4,7 @@
 // Argument is an object with a lat, lon, and date
 async function getWeatherAPIData(txt){
 
-    console.log(txt);
+    console.log('in getWeatherAPIData',txt);
     //Post to the server with the sentence as an argument
     try{
     const res = await fetch('/weather', {

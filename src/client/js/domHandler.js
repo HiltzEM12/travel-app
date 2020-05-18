@@ -60,10 +60,9 @@ function setDates(){
     departure.setAttribute('max', dateFormat(maxDate, 'yyyy-mm-dd'));
 };
 
-
 // Function to handle what to do when the get travel info button is clicked
 function travelButtonClick(event) {
-    console.log('travelButtonClick')
+    //console.log('travelButtonClick')
     if( placeDD.value && departure.value){
         //Split out the lat lon JSON
         //console.log('latlon',placeDD.value)
@@ -71,7 +70,7 @@ function travelButtonClick(event) {
         //console.log('latlon',latLng)
 
         Client.getWeatherAPIData({
-            date: departure.value,
+            date: departure.value +'T00:00' , //Added the time to the date to avoid UTC issues
             lat: latLng.lat,
             lng: latLng.lng
         })
