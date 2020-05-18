@@ -1,5 +1,8 @@
 // JavaScript file for handling the objects returned from weatehrbit.io
 
+// fetch wasn't working on the server, but this fixed that
+const fetch = require("node-fetch");
+
 const dotenv = require('dotenv');
 dotenv.config();
 
@@ -24,32 +27,37 @@ const weatherForcastURL = 'https://api.weatherbit.io/v2.0/forecast/daily';
 
 // Returns current weatehr and forcast data in a JSON string
 async function getWeatherData(tripDate, lat, lng){
-    const forcastURL = getForcastURL(tripDate);
+    //const forcastURL = getForcastURL(tripDate);
     try {
-        if(forcastURL !== ''){
-            forcastURL = forcastURL + '?&lat=' + lat + '&lon=' + lng +'&key=' + weatherKey + '&units=I';
-            //console.log(apiURL)
-            // Call the GEO API
-            await fetch(forcastURL)
-            .then(res => res.json())
-            .then(function(res) { 
-                //Process results then send
-                //console.log(JSON.stringify(res))  //Use to get json example
-                if('data' in res && res.data.length > 0){
-                    console.log(weatherBit.processForcastData(res.data));
-                    return 1;
-                }
-                else {
-                    return res;
-                }
-            })
-            .then(function(res){
-                //response.send(res);
-            })
-        }
-        else {
-            response.send(''); //Send nothing.  Forcast is not applicable
-        }
+        await getForcastData(tripDate, lat, lng)
+        .then(function(res){
+            console.log('getWeatherData',res)
+            return res;
+        })
+        // if(forcastURL !== ''){
+        //     forcastURL = forcastURL + '?&lat=' + lat + '&lon=' + lng +'&key=' + weatherKey + '&units=I';
+        //     //console.log(apiURL)
+        //     // Call the GEO API
+        //     await fetch(forcastURL)
+        //     .then(res => res.json())
+        //     .then(function(res) { 
+        //         //Process results then send
+        //         //console.log(JSON.stringify(res))  //Use to get json example
+        //         if('data' in res && res.data.length > 0){
+        //             console.log(weatherBit.processForcastData(res.data));
+        //             return 1;
+        //         }
+        //         else {
+        //             return res;
+        //         }
+        //     })
+        //     .then(function(res){
+        //         //response.send(res);
+        //     })
+        // }
+        // else {
+        //     response.send(''); //Send nothing.  Forcast is not applicable
+        // }
     } catch (error) {
         console.log('error in getWeather', error);
     }
@@ -57,17 +65,30 @@ async function getWeatherData(tripDate, lat, lng){
 
 //Function to get the forcast url if the trip date is within 16 days
 //Returns a blank string otherwies
-function getForcastData(tripDate, lat, lng){
+async function getForcastData(tripDate, lat, lng){
+    const forcastData = [];  // Data to return
     //Get the differences in days between now and the time of the trip
     const dateDiff = dayDiff(new Date(tripDate),new Date());
+    //Get the forcast data if trip is within 16 days
     if(dateDiff <= 16){
-        forcastURL = weatherForcastURL + '?&lat=' + lat + '&lon=' + lng +'&key=' + weatherKey + '&units=I';
-
-        return 1;
+        const forcastURL = weatherForcastURL + '?&lat=' + lat + '&lon=' + lng +'&key=' + weatherKey + '&units=I';
+        try{
+            await fetch(forcastURL) //Call to the api
+            .then(res => res.json())
+            .then(function(res) { 
+                //Process results then return
+                //console.log(JSON.stringify(res))  //Use to get json example
+                if('data' in res && res.data.length > 0){
+                    //console.log('getForcastData',processForcastData(res.data));
+                    forcastData.push(processForcastData(res.data));
+                }
+            })
+        }
+        catch (error){
+            console.log('error in getForcastData', error);
+        }
     }
-    else{
-        return {forcast: {}};
-    }
+    return forcastData;
 };
 
 // function getCurrentWeatherURL(){
@@ -103,9 +124,7 @@ function processForcastData(res){
 }
 
 module.exports = {
-    //getForcastURL,
     getWeatherData,
-    //processForcastData
 }
 
 //Function to get the difference of 2 dates in days

@@ -106,42 +106,17 @@ app.post('/geo', async function (request, response) {
 //const weatherKey = process.env.WEATHER_KEY;
 
 
-
 // POST route for getting the weather
 app.post('/weather', async function (request, response) {
     const tripDate = request.body.text.date;
     const lat = request.body.text.lat;
     const lng = request.body.text.lng;
-    //const forcastURL = weatherBit.getForcastURL(tripDate);
-    //console.log('latLng ',request.body.text.latLng);
-    //console.log('lat ',request.body.text.latLng.json());
-    //console.log('lng ',request.body.text.latLng.lng);
-    //console.log('In /weather post');
     try {
-        if(forcastURL !== ''){
-            //const apiURL = forcastURL + '?&lat=' + lat + '&lon=' + lng +'&key=' + weatherKey + '&units=I';
-            //console.log(apiURL)
-            // Call the GEO API
-            await fetch(apiURL)
-            .then(res => res.json())
-            .then(function(res) { 
-                //Process results then send
-                //console.log(JSON.stringify(res))  //Use to get json example
-                if('data' in res && res.data.length > 0){
-                    console.log(weatherBit.processForcastData(res.data));
-                    return 1;
-                }
-                else {
-                    return res;
-                }
-            })
-            .then(function(res){
-                //response.send(res);
-            })
-        }
-        else {
-            response.send(''); //Send nothing.  Forcast is not applicable
-        }
+        await weatherBit.getWeatherData(tripDate, lat, lng)
+        .then(function(res){
+            console.log(res);
+            response.send(res);
+        })
     } catch (error) {
         console.log('error in getWeather', error);
     }
