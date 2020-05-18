@@ -29,11 +29,17 @@ const weatherForcastURL = 'https://api.weatherbit.io/v2.0/forecast/daily';
 // Returns current weatehr and forcast data in a JSON string
 async function getWeatherData(tripDate, lat, lng){
     //const forcastURL = getForcastURL(tripDate);
+    let retVal = null;
     try {
+        //console.log('getForcastData call')
+        //const dateDiff = dayDiff(new Date(tripDate),new Date());
+        //if(dateDiff <= 16)
         await getForcastData(tripDate, lat, lng)
         .then(function(res){
             //console.log('getWeatherData',res)
-            return res;
+            //console.log('getWeatherData return, has data in it')
+            //console.log(res)
+            retVal =  res;
         })
         // if(forcastURL !== ''){
         //     forcastURL = forcastURL + '?&lat=' + lat + '&lon=' + lng +'&key=' + weatherKey + '&units=I';
@@ -62,26 +68,30 @@ async function getWeatherData(tripDate, lat, lng){
     } catch (error) {
         console.log('error in getWeather', error);
     }
+    return retVal;
 }
 
 //Function to get the forcast url if the trip date is within 16 days
 //Returns a blank string otherwies
 async function getForcastData(tripDate, lat, lng){
-    const forcastData = [];  // Data to return
+    let forcastData = [];  // Data to return
     //Get the differences in days between now and the time of the trip
     const dateDiff = dayDiff(new Date(tripDate),new Date());
     //Get the forcast data if trip is within 16 days
     if(dateDiff <= 16){
         const forcastURL = weatherForcastURL + '?&lat=' + lat + '&lon=' + lng +'&key=' + weatherKey + '&units=I';
         try{
+            //console.log('fetching forcast')
             await fetch(forcastURL) //Call to the api
             .then(res => res.json())
-            .then(function(res) { 
+            .then(async function(res) { 
                 //Process results then return
                 //console.log(JSON.stringify(res))  //Use to get json example
                 if('data' in res && res.data.length > 0){
                     //console.log('getForcastData',processForcastData(res.data));
-                    forcastData.push(processForcastData(res.data));
+                    //console.log('processForcastData call')
+                    forcastData = await processForcastData(res.data);
+                    //forcastData.push(fData);
                 }
             })
         }
@@ -89,6 +99,9 @@ async function getForcastData(tripDate, lat, lng){
             console.log('error in getForcastData', error);
         }
     }
+    //}
+    //console.log('getForcastData',forcastData)
+    //console.log('getForcastData return')
     return forcastData;
 };
 
@@ -96,8 +109,8 @@ async function getForcastData(tripDate, lat, lng){
 //     return weatherCurrentURL;
 // }
 
-function processForcastData(res){
-    const weatherDetails = []; // Array to store the place details
+async function processForcastData(res){
+    const forcastDetials = []; // Array to store the place details
     // Go through the given array and create readable place names and get lat and lon
     for(let i = 0; i < res.length; i++){
         let weatherDate = res[i].valid_date;
@@ -107,7 +120,7 @@ function processForcastData(res){
         let desc = res[i].weather.description;
         let wIcon = res[i].weather.icon; // Weather description icon (i.e. https://www.weatherbit.io/static/img/icons/t01d.png)
 
-        weatherDetails.push(
+        forcastDetials.push(
             {
                 weatherDate: weatherDate, 
                 maxTemp: maxTemp, 
@@ -119,9 +132,10 @@ function processForcastData(res){
         )
         // }
     }
-    //console.log(placeDetails)
+    //console.log('processForcastData',JSON.stringify(weatherDetails))
     // Update the dropdown list for the user to choose
-    return weatherDetails;
+    //console.log('processForcastData retrun');
+    return forcastDetials;
 }
 
 module.exports = {

@@ -49,9 +49,9 @@ const server = app.listen(port, listening);
 
 // POST route for geoName API calls
 app.post('/geo', async function (request, response) {
-    place = request.body.text;
+    const place = request.body.text;
     try {
-        const res = await geoNames.getGeoData(place)
+        const res = await geoNames.getGeoData(place);
         response.send(JSON.stringify(res));
     } catch (error) {
         console.log('error in getGeo', error);
@@ -64,11 +64,16 @@ app.post('/weather', async function (request, response) {
     const lat = request.body.text.lat;
     const lng = request.body.text.lng;
     try {
-        await weatherBit.getWeatherData(tripDate, lat, lng)
-        .then(function(res){
-            console.log(res);
-            response.send(res);
-        })
+        //console.log('test',weatherBit.getWeatherData(tripDate, lat, lng))
+        //console.log('getWeatherData call')
+        const res = await weatherBit.getWeatherData(tripDate, lat, lng);
+        //console.log('Sending response',res)
+        //console.log('return this from server',JSON.stringify(res));
+        response.send(JSON.stringify(res));
+        // .then(function(res){
+        //     console.log('return this from server',res);
+        //     response.send(res);
+        // })
     } catch (error) {
         console.log('error in getWeather', error);
     }
