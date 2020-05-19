@@ -36,19 +36,22 @@ async function updatePlaceDD(arr){
     placeDD.innerHTML = '';
     if(arr.length > 0){ // Only process if there's something in the array
         const docFrag = document.createDocumentFragment(); // Document frag to add to
-        arr.sort((x,y) => (x.place > y.place) ? 1 : -1); // Sort the array by place name 
+        arr.sort((x,y) => (x.displayName > y.displayName) ? 1 : -1); // Sort the array by place name 
 
         for (let i = 0; i < arr.length; i++) {
             const opItem = document.createElement('option'); // Create the new option
-            opItem.value = '{ "lat": ' + arr[i].lat +', "lng": ' + arr[i].lng + '}'; // Add the lat lon as the values
-            opItem.textContent = arr[i].place;  // Add the place name as the text
+            opItem.value = '{ "lat": ' + arr[i].lat 
+                            +', "lng": ' + arr[i].lng 
+                            +', "adminName1": ' + arr[i].adminName1 
+                            +', "countryName": ' + arr[i].countryName 
+                            +', "name": ' + arr[i].name 
+                            +', "toponymName": ' + arr[i].toponymName 
+                            + '}'; // Add the values in a json string
+            opItem.textContent = arr[i].displayName;  // Add the place name as the text
             docFrag.appendChild(opItem); // Add the item to the doc frag
         }
-
         placeDD.appendChild(docFrag);
-    }
-
-    
+    }    
 };
 
 //Sets the min and max dates for the departure date clicker

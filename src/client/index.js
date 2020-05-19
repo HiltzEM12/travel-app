@@ -1,6 +1,7 @@
 // Import needed functions
 import { getGeoAPIData } from './js/geoNames';
 import { getForcastData } from './js/weatherBit';
+import { getPicData } from './js/pixabay';
 import { placeButtonClick } from './js/domHandler';
 import { updatePlaceDD } from './js/domHandler';
 import { setDates } from './js/domHandler';
@@ -20,6 +21,7 @@ export {
     travelButtonClick,
     getForcastData,
     updateWeather,
+    getPicData
 }
 
 
