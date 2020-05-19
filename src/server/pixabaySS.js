@@ -25,7 +25,7 @@ async function getPics(name, adminName1, countryName){
     const apiURLStart = pixabayURL + pixabayKEY + '&q=' ;
     const apiURLEnd = '&image_type=photo';
 
-    const rtn = [];  //What to return
+    let rtn = [];  //What to return
 
     //Replace all spaces with plus signs
     name = name.replace(/\s+/g, '+');
@@ -46,18 +46,30 @@ async function getPics(name, adminName1, countryName){
 
     //Next just the country
     terms.push(countryName);
-    
+    //console.log('Searching for pic ruesults')
     //Go through each search until something is returned or all have been searched
-    for(let i = 0; i < terms.length; i++){
+    for(let i = 0; i < terms.length && rtn.length === 0; i++){
         let apiURL = apiURLStart + terms[i] + apiURLEnd;
+        //console.log(terms[i])
         try {
-
+            // Call the GEO API
+            await fetch(apiURL)
+            .then(res => res.json())
+            .then(async function(res) { 
+                // Make sure data was returned
+                if('hits' in res && res.hits.length > 0){
+                    //console.log('Pic search results',res.hits[0])
+                    rtn = res.hits[0].webformatURL;
+                    //break;
+                }
+            })
         }
         catch(error){
             console.log('error in getPics',error);
-            break;
+            //break;
         }
     }
+    //console.log('return at end =',rtn)
     return rtn;
 }
 

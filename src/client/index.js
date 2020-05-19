@@ -6,7 +6,7 @@ import { placeButtonClick } from './js/domHandler';
 import { updatePlaceDD } from './js/domHandler';
 import { setDates } from './js/domHandler';
 import { travelButtonClick } from './js/domHandler';
-import { updateWeather } from './js/domHandler';
+//import { updateWeather } from './js/domHandler';
 //import { cityTest } from './media/testCity.jpg';
 
 //Import css (SASS in this case) files
@@ -20,7 +20,7 @@ export {
     setDates,
     travelButtonClick,
     getForcastData,
-    updateWeather,
+    //updateWeather,
     getPicData
 }
 
