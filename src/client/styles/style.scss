@@ -267,3 +267,8 @@ select{
 button:hover {
     cursor: pointer;
 }
+
+input[type=date]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    display: none;
+}
