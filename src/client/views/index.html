@@ -10,14 +10,14 @@
 </head>
 
 <body onload='Client.setDates()'>
-  <div class='holder'>
+  <header class='holder'>
     Travel App
-  </div>
+  </header>
   <div id='app'>
     <!-- place search field -->
     <div class='place-search-grid'>
       <div class='holder'>
-        <label for='place-search-txt'>Enter city or other place here</label>
+        <label for='place-search-txt'>Enter city or place here</label>
         <input type='text' class= 'user-input' id='place-search-txt' placeholder='enter place here'>
       </div>
       <div class='holder'>
@@ -39,17 +39,44 @@
       </div>
     </div>
     <div class='trips-grid'>
-      <div id='current-weather'></div>
-    </div>
-    <!-- <div class='holder entry'>
-      <div class='title'>Most Recent Entry</div>
-      <div id='entryHolder'>
-        <div id='date'></div>
-        <div id='temp'></div>
-        <div id='content'></div>
+      <div class="trip-box">
+        <figure>
+          <figcaption class='holder'>place name</figcaption>
+          <img src='https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?ixlib=rb-1.2.1&w=1000&q=80' alt='place name' class='trip-pic'>
+        </figure>
+        <div>
+          <p class='travel-date holder'>Travel Date: Thursday May, 21st 2020</p>
+        </div>
+        <div>
+          <p class='current-weather holder'>Current Weather</p>
+        </div>
+        <div>
+          <p class='forecast-weather holder'>Forcast</p>
+        </div>
+
       </div>
-    </div> -->
+      <div class="trip-flex">
+        <figure>
+          <img src='https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?ixlib=rb-1.2.1&w=1000&q=80' alt='place name' class='trip-pic'>
+          <figcaption>place name</figcaption>
+        </figure>
+      </div>
+      <div class="trip-flex">
+        <figure>
+          <img src='https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?ixlib=rb-1.2.1&w=1000&q=80' alt='place name' class='trip-pic'>
+          <figcaption>place name</figcaption>
+        </figure>
+      </div>
+      <div class="trip-flex">
+        <figure>
+          <img src='https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?ixlib=rb-1.2.1&w=1000&q=80' alt='place name' class='trip-pic'>
+          <figcaption>place name</figcaption>
+        </figure>
+      </div>
   </div>
+  <footer class='holder'>
+    Eric Hiltz 2020
+  </footer>
   <!-- <script src='app.js' type='text/javascript'></script> -->
 
 </body>

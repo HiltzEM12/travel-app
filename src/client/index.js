@@ -6,6 +6,7 @@ import { updatePlaceDD } from './js/domHandler';
 import { setDates } from './js/domHandler';
 import { travelButtonClick } from './js/domHandler';
 import { updateWeather } from './js/domHandler';
+//import { cityTest } from './media/testCity.jpg';
 
 //Import css (SASS in this case) files
 import './styles/style.scss'
@@ -18,5 +19,25 @@ export {
     setDates,
     travelButtonClick,
     getForcastData,
-    updateWeather
+    updateWeather,
 }
+
+
+// function testImage() {
+//     const picElement = document.createElement('figure')
+//     picElement.classList.add('trip-pic');
+
+//     // Add the image to our existing div.
+//     const myIcon = new Image();
+//     myIcon.src = cityTest;
+
+//     picElement.appendChild(myIcon);
+
+//     const trip = document.getElementsByClassName('trip-flex');
+//     for(let i = 0; i < trip.length; i++){
+//         trip[0].appendChild(picElement);
+//     }
+
+//   }
+
+//   testImage();
