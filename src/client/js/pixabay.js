@@ -3,7 +3,7 @@
 // Function to get the data.
 // Argument is a JSON string with search terms
 async function getPicData(term){
-
+    console.log('in getPicData')
     //Post to the server with the search term as an argument
     try{
     const res = await fetch('/pic', {

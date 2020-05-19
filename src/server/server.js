@@ -3,6 +3,7 @@
 
 var geoNames = require("./geoNamesSS");
 var weatherBit = require("./weatherBitSS");
+var pixabay = require("./pixabaySS");
 
 // For handling the .env variables
 const dotenv = require('dotenv');

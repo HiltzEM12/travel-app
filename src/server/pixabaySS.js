@@ -15,9 +15,12 @@ const pixabayKEY = process.env.IMAGE_KEY;
 
 
 // Function to call the API
-async function getPics(term){
-    const apiURL = pixabayURL + pixabayKEY + '&q=' + term + '&image_type=photo';
-    //console.log(apiURL)
+// Go find a picture of the specific place when possible
+// WIll drill up to a lower search resolution until a picture is found
+async function getPics(name, toponymName, adminName1, countryName){
+    console.log('in getPics')
+    let apiURL = pixabayURL + pixabayKEY + '&q=' + countryName + '&image_type=photo';
+    console.log(apiURL)
     
 }
 

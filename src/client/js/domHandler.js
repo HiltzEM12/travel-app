@@ -42,11 +42,11 @@ async function updatePlaceDD(arr){
             const opItem = document.createElement('option'); // Create the new option
             opItem.value = '{ "lat": ' + arr[i].lat 
                             +', "lng": ' + arr[i].lng 
-                            +', "adminName1": ' + arr[i].adminName1 
-                            +', "countryName": ' + arr[i].countryName 
-                            +', "name": ' + arr[i].name 
-                            +', "toponymName": ' + arr[i].toponymName 
-                            + '}'; // Add the values in a json string
+                            +', "adminName1": "' + arr[i].adminName1 
+                            +'", "countryName": "' + arr[i].countryName 
+                            +'", "name": "' + arr[i].name 
+                            +'", "toponymName": "' + arr[i].toponymName 
+                            + '"}'; // Add the values in a json string
             opItem.textContent = arr[i].displayName;  // Add the place name as the text
             docFrag.appendChild(opItem); // Add the item to the doc frag
         }
@@ -72,16 +72,24 @@ function travelButtonClick(event) {
     if( placeDD.value && departure.value){
         //Split out the lat lon JSON
         //console.log('latlon',placeDD.value)
-        const latLng = JSON.parse(placeDD.value);
+        const placeDetails = JSON.parse(placeDD.value);
         //console.log('latlon',latLng)
 
         Client.getForcastData({
             date: departure.value +'T00:00' , //Added the time to the date to avoid UTC issues
-            lat: latLng.lat,
-            lng: latLng.lng
+            lat: placeDetails.lat,
+            lng: placeDetails.lng
         })
         // console.log('latlon',placeDD.value)
         // console.log('date',departure.value)
+
+        //Get a picture of the place and process it
+        Client.getPicData({
+            adminName1: placeDetails.adminName1,
+            countryName: placeDetails.countryName,
+            name: placeDetails.name,
+            toponymName: placeDetails.toponymName
+         })
     }
     else{
         alert('Enter a place and a date')
@@ -94,34 +102,34 @@ function updateWeather(arr){
     const futureWeather = arr.forcast;
     //1st process the current weather
     if(currentWeather.length > 0){ // Only process if there's something in the array
-        //1st clear out the old list
-        currentWeatherDisp.innerHTML = '';
+        // //1st clear out the old list
+        // currentWeatherDisp.innerHTML = '';
 
-        const docFrag = document.createDocumentFragment(); // Document frag to add to
+        // const docFrag = document.createDocumentFragment(); // Document frag to add to
 
-        //Add a div for each field
-        const temp = document.createElement('div'); // temperature div
-        temp.textContent = 'Current temperature:' + currentWeather[0].temp + ' F';
-        docFrag.appendChild(temp);
+        // //Add a div for each field
+        // const temp = document.createElement('div'); // temperature div
+        // temp.textContent = 'Current temperature:' + currentWeather[0].temp + ' F';
+        // docFrag.appendChild(temp);
 
-        const feelsLike = document.createElement('div'); // feels like temp div
-        feelsLike.textContent = 'Feels like: ' + currentWeather[0].feelsLike + ' F';
-        docFrag.appendChild(feelsLike);
+        // const feelsLike = document.createElement('div'); // feels like temp div
+        // feelsLike.textContent = 'Feels like: ' + currentWeather[0].feelsLike + ' F';
+        // docFrag.appendChild(feelsLike);
 
-        const windSpeed = document.createElement('div'); // wind speed div
-        windSpeed.textContent = 'Wind speed: '+ currentWeather[0].windSpd + ' mph';
-        docFrag.appendChild(windSpeed);
+        // const windSpeed = document.createElement('div'); // wind speed div
+        // windSpeed.textContent = 'Wind speed: '+ currentWeather[0].windSpd + ' mph';
+        // docFrag.appendChild(windSpeed);
 
-        const clouds = document.createElement('div'); // cloud cover percent div
-        clouds.textContent = 'Cloud cover: ' + currentWeather[0].clouds + '%';
-        docFrag.appendChild(clouds);
+        // const clouds = document.createElement('div'); // cloud cover percent div
+        // clouds.textContent = 'Cloud cover: ' + currentWeather[0].clouds + '%';
+        // docFrag.appendChild(clouds);
 
-        const desc = document.createElement('div'); // general description div
-        desc.textContent = 'Current condition: ' + currentWeather[0].desc;
-        docFrag.appendChild(desc);
+        // const desc = document.createElement('div'); // general description div
+        // desc.textContent = 'Current condition: ' + currentWeather[0].desc;
+        // docFrag.appendChild(desc);
 
-        //Add the divs created above to the document
-        currentWeatherDisp.appendChild(docFrag);
+        // //Add the divs created above to the document
+        // currentWeatherDisp.appendChild(docFrag);
 
     }
 
