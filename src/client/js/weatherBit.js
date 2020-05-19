@@ -1,5 +1,8 @@
 // JavaScript file for handling the objects returned from weatehrbit.io
 
+// Current weather div
+const currentWeatherDisp = document.getElementById('current-weather'); //Chnage this when it goes live.  For testing only
+
 // Function to get the data.
 // Argument is an object with a lat, lon, and date
 async function getForcastData(txt){

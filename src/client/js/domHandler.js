@@ -18,10 +18,6 @@ const departure = document.getElementById('departure');
 // Add listener to the place search button
 document.getElementById('get-travel-info').addEventListener('click', travelButtonClick);
 
-// Current weather div
-const currentWeatherDisp = document.getElementById('current-weather');
-
-
 // Function to handle what to do when the place search button is clicked
 function placeButtonClick(event) {
     //Search for a place and let the user selct from the results
@@ -74,6 +70,13 @@ function travelButtonClick(event) {
         const placeDetails = JSON.parse(placeDD.value);
         //console.log('latlon',latLng)
 
+        //Get a picture of the place and process it
+        Client.getPicData({
+            adminName1: placeDetails.adminName1,
+            countryName: placeDetails.countryName,
+            name: placeDetails.name
+        })
+
         Client.getForcastData({
             date: departure.value +'T00:00' , //Added the time to the date to avoid UTC issues
             lat: placeDetails.lat,
@@ -81,13 +84,6 @@ function travelButtonClick(event) {
         })
         // console.log('latlon',placeDD.value)
         // console.log('date',departure.value)
-
-        //Get a picture of the place and process it
-        Client.getPicData({
-            adminName1: placeDetails.adminName1,
-            countryName: placeDetails.countryName,
-            name: placeDetails.name
-         })
     }
     else{
         alert('Enter a place and a date')
