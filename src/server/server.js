@@ -85,9 +85,8 @@ app.post('/pic', async function (request, response) {
     const adminName1 = request.body.text.adminName1;
     const countryName = request.body.text.countryName;
     const name = request.body.text.name;
-    const toponymName = request.body.text.toponymName;
     try {
-        const res = await pixabay.getPics(name, toponymName, adminName1, countryName);
+        const res = await pixabay.getPics(name, adminName1, countryName);
         response.send(JSON.stringify(res));
     } catch (error) {
         console.log('error in getPic', error);

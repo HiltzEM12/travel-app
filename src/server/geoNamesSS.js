@@ -69,7 +69,6 @@ async function processGeoRes(res){
             let lat = res[i].lat || '';
             let lng = res[i].lng || '';
             let name = res[i].name || '';
-            let toponymName = res[i].toponymName || '';
             let adminName1 = res[i].adminName1 || '';
             let countryName = res[i].countryName || '';
             placeDetails.push({
@@ -77,7 +76,6 @@ async function processGeoRes(res){
                     lat: lat, 
                     lng: lng,
                     name: name,
-                    toponymName: toponymName,
                     adminName1: adminName1,
                     countryName: countryName
                 })

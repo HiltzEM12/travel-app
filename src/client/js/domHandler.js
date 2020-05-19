@@ -45,7 +45,6 @@ async function updatePlaceDD(arr){
                             +', "adminName1": "' + arr[i].adminName1 
                             +'", "countryName": "' + arr[i].countryName 
                             +'", "name": "' + arr[i].name 
-                            +'", "toponymName": "' + arr[i].toponymName 
                             + '"}'; // Add the values in a json string
             opItem.textContent = arr[i].displayName;  // Add the place name as the text
             docFrag.appendChild(opItem); // Add the item to the doc frag
@@ -87,8 +86,7 @@ function travelButtonClick(event) {
         Client.getPicData({
             adminName1: placeDetails.adminName1,
             countryName: placeDetails.countryName,
-            name: placeDetails.name,
-            toponymName: placeDetails.toponymName
+            name: placeDetails.name
          })
     }
     else{
