@@ -13,12 +13,15 @@ This project requires you to create an asynchronous web app that uses Web API an
 4. Call the GeoNames API to get the lat/lon and country of a given city
 5. Put list of results from GeoNames into a dropdown
 6. Have user select the trip date
-7. Use weatherbit.io to get the weather.  This part is slightly confusing since the directions are a bit wierd.
+7. Search for a picture of the selected location via pixabay
+  - Call multiple times if nothing comes up initially
+8. Use weatherbit.io to get the weather.  This part is slightly confusing since the directions are a bit wierd.
 ```
 If the trip is within a week, you will get the current weather forecast.
 If the trip is in the future, you will get a predicted forecast.
 ```
 - I interpreted this to mean, get the current weather of the location and get the forcast if the trip is within 16 days.  There's no forcast pst 16 days
+9. Create a card to add to the document that displays the trip date, weather, a picture, and the forcast if applicable
 
 ## Notes
 Tips:
