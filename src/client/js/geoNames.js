@@ -3,18 +3,7 @@
 // Place dropdown
 const placeDD = document.getElementById('place-dropdown');
 
-// // Place field
-// const placeNameField = document.getElementById('place-search-txt');
-
-// // Add listener to the place search button
-// document.getElementById('search-place-button').addEventListener('click', placeButtonClick);
-
-// // Function to handle what to do when the place search button is clicked
-// function placeButtonClick(event) {
-//     //Search for a place and let the user selct from the results
-//     getGeoAPIData(placeNameField.value);
-// };
-
+// Function to call the geoAPI and get the geo data
 async function getGeoAPIData(place){
     //Post to the server with the sentence as an argument
     try{
@@ -29,7 +18,12 @@ async function getGeoAPIData(place){
         .then(res => res.json())
         .then(function(res){
             //console.log(res);
-            updatePlaceDD(res); //Send results to the DOM to update the dropdown
+            if (res.length > 0 ){ //Only proceed if results were returned
+                updatePlaceDD(res); //Process the results
+            }
+            else{
+                alert('No results found for ' + place)
+            }
         })
     }
     catch(error){
@@ -43,23 +37,21 @@ async function updatePlaceDD(arr){
 
     //1st clear out the old list
     placeDD.innerHTML = '';
-    if(arr.length > 0){ // Only process if there's something in the array
-        const docFrag = document.createDocumentFragment(); // Document frag to add to
-        arr.sort((x,y) => (x.displayName > y.displayName) ? 1 : -1); // Sort the array by place name 
+    const docFrag = document.createDocumentFragment(); // Document frag to add to
+    arr.sort((x,y) => (x.displayName > y.displayName) ? 1 : -1); // Sort the array by place name 
 
-        for (let i = 0; i < arr.length; i++) {
-            const opItem = document.createElement('option'); // Create the new option
-            opItem.value = '{ "lat": ' + arr[i].lat 
-                            +', "lng": ' + arr[i].lng 
-                            +', "adminName1": "' + arr[i].adminName1 
-                            +'", "countryName": "' + arr[i].countryName 
-                            +'", "name": "' + arr[i].name 
-                            + '"}'; // Add the values in a json string
-            opItem.textContent = arr[i].displayName;  // Add the place name as the text
-            docFrag.appendChild(opItem); // Add the item to the doc frag
-        }
-        placeDD.appendChild(docFrag);
-    }    
+    for (let i = 0; i < arr.length; i++) {
+        const opItem = document.createElement('option'); // Create the new option
+        opItem.value = '{ "lat": ' + arr[i].lat 
+                        +', "lng": ' + arr[i].lng 
+                        +', "adminName1": "' + arr[i].adminName1 
+                        +'", "countryName": "' + arr[i].countryName 
+                        +'", "name": "' + arr[i].name 
+                        + '"}'; // Add the values in a json string
+        opItem.textContent = arr[i].displayName;  // Add the place name as the text
+        docFrag.appendChild(opItem); // Add the item to the doc frag
+    }
+    placeDD.appendChild(docFrag);
 };
 
 export { 
