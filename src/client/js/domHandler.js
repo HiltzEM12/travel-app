@@ -63,43 +63,12 @@ async function travelButtonClick(event) {
             });
 
             createTripBox(picDocFrag, weatherDocFrag);
-            //.then(res => res)
-            //.then(console.log('5 GetPicData Called'))
-            //console.log('5 GetPicData Called',x)
+
         }
         catch(error){
-            //console.log('Error in travelButtonClick',error)
         }
-        // .then(async function(res){
-            //console.log('picDocFrag',picDocFrag.classList);
-            //console.log('5 GetPicData Called',temp);
-            //createTripBox(temp, null);
-            // const weatherDocFrag = await Client.getWeatherBitData({
-            //     date: departure.value +'T00:00' , //Added the time to the date to avoid UTC issues
-            //     lat: placeDetails.lat,
-            //     lng: placeDetails.lng
-            // })
-            // .then(async function(weatherDocFrag, picDocFrag){
-            //     createTripBox(picDocFrag, weatherDocFrag);
-            // })
-        // })
 
-        //console.log(picDocFrag);
-        //picBox.appendChild(picDocFrag);
-
-        //Get current weather data and forcast of the place and process it
-        //Returns a docFrag that will be added to the document
-        // const weatherDocFrag = await  Client.getWeatherBitData({
-        //     date: departure.value +'T00:00' , //Added the time to the date to avoid UTC issues
-        //     lat: placeDetails.lat,
-        //     lng: placeDetails.lng
-        // })
-        // console.log('latlon',placeDD.value)
-        // console.log('date',departure.value)
-
-        //Create trip doc frag and add it
-        // createTripBox(picDocFrag, weatherDocFrag);
-        //Clear out the data fields to prepare for another trip
+        // Clear out user input fields
         clearFields();
     }
     else{
@@ -111,15 +80,18 @@ async function travelButtonClick(event) {
 const tripGrid = document.getElementById('trip-grid-div');
 
 // Function to create the trip box docfrag to add to the document
+// Arguments are the weather and picture html to add
 function createTripBox(picDocFrag, weatherDocFrag){
-    //tripGrid.appendChild(picDocFrag)
+
     const docFrag = document.createDocumentFragment(); //Docfrag to add to then append to the doc
     const mainDiv = document.createElement('div'); //Main trip box div
     mainDiv.classList.add('trip-box');
     mainDiv.appendChild(picDocFrag); //Add the picture
 
+    // Add the main div of the card to the docFrag to add
     docFrag.appendChild(mainDiv);
 
+    // Add to the document
     tripGrid.appendChild(docFrag);
 
 }
