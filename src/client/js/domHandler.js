@@ -129,10 +129,18 @@ async function createRemoveFrag(){
     button.type = 'submit';
     button.id = 'delete-trip-button';
     button.textContent = 'Remove Trip';
+    await addRemoveListener(button);
     //mainDiv.appendChild(button);
     docFrag.appendChild(button);
     return docFrag;
 }
+
+async function addRemoveListener(button){
+    button.addEventListener('click',removeTripBox);
+}
+
+// Add listener to the place search button
+document.getElementById('search-place-button').addEventListener('click', placeButtonClick);
 
 // Clears out the user input fields to prepare for another trip
 function clearFields(){
@@ -140,6 +148,21 @@ function clearFields(){
     placeNameField.value = '';
     departure.value = '';
 };
+
+//Removes the trip card
+function removeTripBox(event){
+    let elem = event.target;
+
+    //Move up the nodes until the head is reached, or the trip box is reached
+    while((!(elem.classList.contains('trip-box')) && elem.tagName != 'BODY')){
+        elem = elem.parentNode;
+    }
+    // Delete if the element contians the trip-box class
+    // Otherwise do nothing since the head was reached
+    if(elem.classList.contains('trip-box')){
+        elem.parentNode.removeChild(elem);
+    }
+}
 
 
 export { 
