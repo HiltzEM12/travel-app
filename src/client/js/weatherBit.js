@@ -1,5 +1,8 @@
 // JavaScript file for handling the objects returned from weatehrbit.io
 
+// Use for formatting dates
+const dateFormat = require('dateformat');
+
 // Function to get the data.
 // Argument is an object with a lat, lon, and date
 async function getWeatherBitData(txt){
@@ -73,31 +76,42 @@ async function createForcastFrag(arr){
     let fLength = arr[0].length;  //Forcast day length
     //console.log(arr)
     const head = document.createElement('div'); // forcase header div
+    const forcastBox = document.createElement('div'); // forcase header div
     head.textContent = fLength + '-Day Forecast';
-    docFrag.appendChild(head);
+    forcastBox.classList.add('forecast-weather-container');
     for(let i = 0; i < arr[0].length; i++){
         //let forcast = await createforcastBox(arr[0][i]);
         let forcast = await createforcastBox(arr[0][i]);
-        head.appendChild(forcast);
+        forcastBox.appendChild(forcast);
     }
+    head.appendChild(forcastBox);
+    docFrag.appendChild(head);
     return docFrag;
 }
 
 // Creates the box to use to add to the forcast section
 async function createforcastBox(txt){
     let docFrag = document.createDocumentFragment(); // Document frag to add to
-    console.log(txt.weatherDate);
-    console.log(txt.minTemp);
-    console.log(txt.maxTemp);
-    console.log(txt.precip);
-    console.log(txt.desc);
-    console.log(txt);
     const forcast = document.createElement('div'); // forcast div
-    forcast.textContent = 'test'
+    forcast.classList.add('forecast-weather-box');
+    const fDate = document.createElement('div');
+    fDate.textContent = dateFormat(txt.weatherDate,'mmm dd yyyy');
+    const tempHigh = document.createElement('div');
+    tempHigh.textContent = 'High: ' + txt.maxTemp + '°F';
+    const tempLow = document.createElement('div');
+    tempLow.textContent = 'Low: ' + txt.minTemp + '°F';
+    const rain = document.createElement('div');
+    rain.textContent = txt.precip + '% rain';
+    const desc = document.createElement('div');
+    desc.textContent = txt.desc;
+    forcast.appendChild(fDate);
+    forcast.appendChild(tempHigh);
+    forcast.appendChild(tempLow);
+    forcast.appendChild(rain);
+    forcast.appendChild(desc);
     docFrag.appendChild(forcast);
     return docFrag;
 }
-
 
 export { 
     getWeatherBitData

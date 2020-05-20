@@ -154,8 +154,16 @@ figcaption{
 }
 
 //For the forcast display
+.forecast-weather-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
 .forecast-weather-box {
-    display: grid;
+    border: 1px solid black;
+    margin: 1px;
+    padding: 3px;
 }
 
 .title-container {

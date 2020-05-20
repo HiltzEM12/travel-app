@@ -1,7 +1,5 @@
 // Javasript file for handling the DOM
 
-//const picBox = document.getElementById("test-pic");  //Chnage this when it goes live.  For testing only
-
 // Use for formatting dates
 const dateFormat = require('dateformat');
 
