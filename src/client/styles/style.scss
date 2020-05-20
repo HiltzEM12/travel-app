@@ -96,6 +96,10 @@ figcaption{
     margin: 5px;
 }
 
+.trip-pic-figure{
+    max-height: 250px;
+}
+
 // //3 columns for medium screens
 // @media (min-width:901px) {
 //     .trips-grid {
@@ -124,9 +128,12 @@ figcaption{
     justify-content: center;
     width: 75%;
     height: 75%;
+    object-fit: contain;
+    //max-height: 200px;
     border: 1px solid black;
     margin: auto;
     align-self: center;
+    box-shadow: 3px 3px rgba(128, 128, 128, 0.411);
 }
 
 .travel-date{
