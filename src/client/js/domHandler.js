@@ -1,5 +1,7 @@
 // Javasript file for handling the DOM
 
+//const picBox = document.getElementById("test-pic");  //Chnage this when it goes live.  For testing only
+
 // Use for formatting dates
 const dateFormat = require('dateformat');
 
@@ -38,22 +40,23 @@ function setDates(){
 };
 
 // Function to handle what to do when the get travel info button is clicked
-function travelButtonClick(event) {
+async function travelButtonClick(event) {
     //console.log('travelButtonClick')
     if( placeDD.value && departure.value){
-        //Split out the lat lon JSON
-        //console.log('latlon',placeDD.value)
+        //Get place details from the dropdown
         const placeDetails = JSON.parse(placeDD.value);
-        //console.log('latlon',latLng)
 
         //Get a picture of the place and process it
         //Returns a docFrag that will be added to the document
-        Client.getPicData({
+        const picDocFrag = await  Client.getPicData({
             displayName: placeDetails.textContent,
             adminName1: placeDetails.adminName1,
             countryName: placeDetails.countryName,
             name: placeDetails.name
         })
+
+        //console.log(picDocFrag);
+        //picBox.appendChild(picDocFrag);
 
         //Get current weather data and forcast of the place and process it
         //Returns a docFrag that will be added to the document

@@ -1,11 +1,11 @@
 // JavaScript file for handling the objects returned from pixabay.com
 
-const picBox = document.getElementById("test-pic");  //Chnage this when it goes live.  For testing only
+// const picBox = document.getElementById("test-pic");  //Chnage this when it goes live.  For testing only
 
 // Function to get the data.
 // Argument is a JSON string with search terms
 async function getPicData(term){
-    const docFrag = document.createDocumentFragment(); // Document frag to return
+    let docFrag = document.createDocumentFragment(); // Document frag to return
     //Post to the server with the search term as an argument
     try{
     const res = await fetch('/pic', {
@@ -22,7 +22,7 @@ async function getPicData(term){
         //console.log('UpdateWeather Call');
         //Client.updateWeather(res);
         //console.log('getPicData', res)
-        processPicUrl(res);
+        docFrag = processPicUrl(res);
     })
         //await console.log(fetch('/geo')))  //Process the json
     }
@@ -40,7 +40,7 @@ function processPicUrl(url){
     //     <figcaption class='holder'>place name</figcaption>
     //     <img src='https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?ixlib=rb-1.2.1&w=1000&q=80' alt='place name' class='trip-pic'>
     // </figure>
-    const docFrag = document.createDocumentFragment(); // Document frag to add to
+    let docFrag = document.createDocumentFragment(); // Document frag to add to
     if(url){ //Make sure there was a url given
 
         //picBox.innerHTML = '';  //Clear out old.  Only needed in testin
@@ -56,7 +56,7 @@ function processPicUrl(url){
         img.src = url;
         fig.appendChild(img);
         docFrag.appendChild(fig);
-        picBox.appendChild(docFrag);
+        //picBox.appendChild(docFrag);
     }
     return docFrag;
 }
