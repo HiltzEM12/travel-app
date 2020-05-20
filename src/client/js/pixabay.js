@@ -21,7 +21,6 @@ async function getPicData(term){
         res = await res.json();
 
         docFrag = await processPicUrl(res);
-
     }
     catch(error){
         console.log('error in getPicData: ', error)

@@ -45,10 +45,8 @@ async function travelButtonClick(event) {
         //Get place details from the dropdown
         const placeDetails = JSON.parse(placeDD.value);
 
-        //Get a picture of the place and process it
-        //Returns a docFrag that will be added to the document
         try{
-            //console.log('1 await Client.getPicData');
+            //Get the picture info.  Returns doc frag
             let picDocFrag = await Client.getPicData({
                 displayName: placeDetails.textContent,
                 adminName1: placeDetails.adminName1,
@@ -56,12 +54,15 @@ async function travelButtonClick(event) {
                 name: placeDetails.name
             });
 
+            console.log('1 await Client.getWeatherBitData')
+            //Get the weather info.  Returns doc frag
             let weatherDocFrag = await Client.getWeatherBitData({
                 date: departure.value +'T00:00' , //Added the time to the date to avoid UTC issues
                 lat: placeDetails.lat,
                 lng: placeDetails.lng
             });
 
+            //Using the above doc frags, add the trip card
             createTripBox(picDocFrag, weatherDocFrag);
 
         }
@@ -94,9 +95,6 @@ async function createTripBox(picDocFrag, weatherDocFrag){
 
     mainDiv.appendChild(weatherDocFrag);//Add the weather
 
-    // let removeButtonFrag = await createRemoveFrag();
-    // mainDiv.appendChild(removeButtonFrag);//Add a trip remove button
-
     // Add the main div of the card to the docFrag to add
     docFrag.appendChild(mainDiv);
 
@@ -121,9 +119,9 @@ async function createDepartureFrag(){
     return docFrag;
 };
 
+//Creates the remove button
 async function createRemoveFrag(){
     const docFrag = document.createDocumentFragment(); //Docfrag to add to then append to the doc
-    //const mainDiv = document.createElement('div'); //Main button box div
     //mainDiv.classList.add('holder');
     const button = document.createElement('button'); //Button
     button.type = 'submit';
@@ -135,6 +133,7 @@ async function createRemoveFrag(){
     return docFrag;
 }
 
+//Adds listener to the remove button
 async function addRemoveListener(button){
     button.addEventListener('click',removeTripBox);
 }
