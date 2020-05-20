@@ -8,7 +8,6 @@ const dateFormat = require('dateformat');
 // Place dropdown
 const placeDD = document.getElementById('place-dropdown');
 
-
 // Place field
 const placeNameField = document.getElementById('place-search-txt');
 
@@ -76,8 +75,20 @@ async function travelButtonClick(event) {
     }
 };
 
+//Div where to add the trip cards
+const tripGrid = document.getElementById('trip-grid-div');
+
 // Function to create the trip box docfrag to add to the document
 function createTripBox(picDocFrag, weatherDocFrag){
+    tripGrid.appendChild(picDocFrag)
+    // const docFrag = document.createDocumentFragment(); //Docfrag to add to then append to the doc
+    // const mainDiv = document.createElement('div'); //Main trip box div
+    // mainDiv.classList.add('trip-box');
+    // mainDiv.appendChild(picDocFrag); //Add the picture
+
+    // docFrag.appendChild(mainDiv);
+
+    // tripGrid.appendChild(docFrag);
 
 }
 
