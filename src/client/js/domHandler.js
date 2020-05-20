@@ -60,18 +60,26 @@ async function travelButtonClick(event) {
 
         //Get current weather data and forcast of the place and process it
         //Returns a docFrag that will be added to the document
-        Client.getWeatherBitData({
+        const weatherDocFrag = await  Client.getWeatherBitData({
             date: departure.value +'T00:00' , //Added the time to the date to avoid UTC issues
             lat: placeDetails.lat,
             lng: placeDetails.lng
         })
         // console.log('latlon',placeDD.value)
         // console.log('date',departure.value)
+
+        //Create trip doc frag and add it
+        createTripBox(picDocFrag, weatherDocFrag);
     }
     else{
         alert('Enter a place and a date')
     }
 };
+
+// Function to create the trip box docfrag to add to the document
+function createTripBox(picDocFrag, weatherDocFrag){
+
+}
 
 export { 
     setDates

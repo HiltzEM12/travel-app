@@ -6,7 +6,7 @@ const currentWeatherDisp = document.getElementById('current-weather'); //Chnage 
 // Function to get the data.
 // Argument is an object with a lat, lon, and date
 async function getWeatherBitData(txt){
-    const docFrag = document.createDocumentFragment(); // Document frag to return
+    let docFrag = document.createDocumentFragment(); // Document frag to return
     //console.log('in getWeatherAPIData',txt);
     //Post to the server with the sentence as an argument
     try{
@@ -22,7 +22,7 @@ async function getWeatherBitData(txt){
     .then(res => res.json())
     .then(function(res){
         //console.log('UpdateWeather Call');
-        updateWeather(res);
+        docFrag = processWeather(res);
     })
         //await console.log(fetch('/geo')))  //Process the json
     }
@@ -33,7 +33,10 @@ async function getWeatherBitData(txt){
 };
 
 // Function to update the weather using the API results
-function updateWeather(arr){
+function processWeather(arr){
+
+    let docFrag = document.createDocumentFragment(); // Document frag to return
+
     const currentWeather = arr.current;
     const futureWeather = arr.forcast;
     //console.log('forcast',arr.forcast)
@@ -74,6 +77,8 @@ function updateWeather(arr){
     if(futureWeather.length > 0){
         
     }
+
+    return docFrag;
 }
 
 export { 
