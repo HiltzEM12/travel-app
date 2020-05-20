@@ -5,7 +5,7 @@ const currentWeatherDisp = document.getElementById('current-weather'); //Chnage 
 
 // Function to get the data.
 // Argument is an object with a lat, lon, and date
-async function getForcastData(txt){
+async function getWeatherBitData(txt){
 
     //console.log('in getWeatherAPIData',txt);
     //Post to the server with the sentence as an argument
@@ -35,6 +35,7 @@ async function getForcastData(txt){
 function updateWeather(arr){
     const currentWeather = arr.current;
     const futureWeather = arr.forcast;
+    //console.log('forcast',arr.forcast)
     //1st process the current weather
     if(currentWeather.length > 0){ // Only process if there's something in the array
         // //1st clear out the old list
@@ -75,5 +76,5 @@ function updateWeather(arr){
 }
 
 export { 
-    getForcastData
+    getWeatherBitData
 };
