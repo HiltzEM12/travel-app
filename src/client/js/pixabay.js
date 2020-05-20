@@ -8,7 +8,7 @@ async function getPicData(term){
     let docFrag = document.createDocumentFragment(); // Document frag to return
     //Post to the server with the search term as an argument
     try{
-    const res = await fetch('/pic', {
+    fetch('/pic', {
         method: 'POST',
         credentials: 'same-origin',
         headers: {

@@ -10,7 +10,7 @@ async function getWeatherBitData(txt){
     //console.log('in getWeatherAPIData',txt);
     //Post to the server with the sentence as an argument
     try{
-    const res = await fetch('/weather', {
+    fetch('/weather', {
         method: 'POST',
         credentials: 'same-origin',
         headers: {
