@@ -92,6 +92,11 @@ async function createTripBox(picDocFrag, weatherDocFrag){
     let departFrag = await createDepartureFrag();
     mainDiv.appendChild(departFrag); //Add the departure date
 
+    mainDiv.appendChild(weatherDocFrag);//Add the weather
+
+    // let removeButtonFrag = await createRemoveFrag();
+    // mainDiv.appendChild(removeButtonFrag);//Add a trip remove button
+
     // Add the main div of the card to the docFrag to add
     docFrag.appendChild(mainDiv);
 
@@ -101,15 +106,33 @@ async function createTripBox(picDocFrag, weatherDocFrag){
 };
 
 //Creates a doc frag to display the departure date
-function createDepartureFrag(){
+async function createDepartureFrag(){
     const docFrag = document.createDocumentFragment(); //Docfrag to add to then append to the doc
     const mainDiv = document.createElement('div'); //Main trip box div
     mainDiv.classList.add('travel-date');
     let departureDate = dateFormat(departure.value, 'fullDate');
     mainDiv.textContent = 'Departure Date: ' + departureDate;
+
+    //Add the delete button next to the date
+    let removeButtonFrag = await createRemoveFrag();
+    mainDiv.appendChild(removeButtonFrag);//Add a trip remove button
+
     docFrag.appendChild(mainDiv);
     return docFrag;
 };
+
+async function createRemoveFrag(){
+    const docFrag = document.createDocumentFragment(); //Docfrag to add to then append to the doc
+    //const mainDiv = document.createElement('div'); //Main button box div
+    //mainDiv.classList.add('holder');
+    const button = document.createElement('button'); //Button
+    button.type = 'submit';
+    button.id = 'delete-trip-button';
+    button.textContent = 'Remove Trip';
+    //mainDiv.appendChild(button);
+    docFrag.appendChild(button);
+    return docFrag;
+}
 
 // Clears out the user input fields to prepare for another trip
 function clearFields(){

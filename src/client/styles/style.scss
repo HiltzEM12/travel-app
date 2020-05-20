@@ -90,6 +90,7 @@ figcaption{
 
 //Grid for each trip
 .trip-box{
+    //display: flex;
     border: 2px solid black;
     box-shadow: 3px 3px rgba(128, 128, 128, 0.411);
     background-color: white;
@@ -140,6 +141,7 @@ figcaption{
     margin-top: 0px;
     text-align: center;
     align-content: center;
+    position: relative;
 }
 
 //For the current weather display
@@ -224,6 +226,16 @@ button {
     border: none;
     box-shadow: 2px 4px 5px #444;
     align-content: center;
+}
+
+#delete-trip-button{
+    width: 65px;
+    height: 25px;
+    background: rgb(129, 26, 26);
+    font-size: 10px;
+    margin: 5px;
+    position: relative;
+
 }
 
 h1 {
