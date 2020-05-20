@@ -94,7 +94,7 @@ async function processForcastData(res,tripDate){
         diffDays = dayDiff(new Date(weatherDate),new Date(tripDate));
         //console.log('processForcastData',new Date(weatherDate),new Date(tripDate), diffDays)
         //Only process the forcast data of a 3 day window (could be less is in the 15th or 16th day of the forcast range)
-        if(diffDays < 2 && diffDays >= 0){
+        if(diffDays < 3 && diffDays >= 0){
             forcastDetials.push(
                 {
                     weatherDate: weatherDate, 

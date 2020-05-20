@@ -69,13 +69,24 @@ async function createCurrentFrag(arr){
 async function createForcastFrag(arr){
     //console.log('in createForcastFrag');
     let docFrag = document.createDocumentFragment(); // Document frag to add to
+    console.log(arr)
+    let fLength = arr[0].length;  //Forcast day length
     //console.log(arr)
-    const temp = document.createElement('div'); // temperature div
-    temp.textContent = '3-Day Forecast';
-    docFrag.appendChild(temp);
-
+    const head = document.createElement('div'); // forcase header div
+    head.textContent = fLength + '-Day Forecast';
+    docFrag.appendChild(head);
+    for(let i = 0; i < arr.lenght; i++){
+        await createforcastBox(arr[0][i]);
+    }
     return docFrag;
 }
+
+// Creates teh box to use to add to the forcast section
+async function createforcastBox(txt){
+    console.log(txt);
+}
+
+
 export { 
     getWeatherBitData
 };
