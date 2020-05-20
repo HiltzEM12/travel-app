@@ -6,7 +6,6 @@
   <title>Travel App</title>
   <link href='https://fonts.googleapis.com/css?family=Oswald:400,600,700|Ranga:400,700&display=swap' rel='stylesheet'>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- <link rel='stylesheet' href='style.css'> -->
 </head>
 
 <body onload='Client.setDates()'>
@@ -15,17 +14,14 @@
     <h2>Enter search criteria in the box, then select a place and date to enter your trip</h2>
   </header>
   <div id='app'>
-    <!-- place search field -->
     <div class='place-search-grid'>
       <div class='holder'>
         <label for='place-search-txt'>Enter city or place here</label>
         <input type='text' class='user-input' id='place-search-txt' placeholder='enter place here'>
       </div>
       <div class='holder'>
-        <!-- Place search button -->
         <button id='search-place-button' type='submit'> Search Places </button>
       </div>
-      <!-- Place dropdown -->
       <div class='holder'>
         <label for='place-dropdown'>Choose a place from the list</label>
         <select id='place-dropdown' class='user-input' name='place-dropdown'></select>
@@ -35,7 +31,6 @@
         <input type='date' id='departure' class='user-input'>
       </div>
       <div class='holder'>
-        <!-- Place search button -->
         <button id='get-travel-info' type='submit'> Get Travel Info </button>
       </div>
     </div>
@@ -46,8 +41,6 @@
       -- Picture data supplied by <a href='https://pixabay.com' target="_blank">Pixabay</a>
       -- Location data supplied by <a href='https://geonames.org' target="_blank">Geonames</a>
     </footer>
-    <!-- <script src='app.js' type='text/javascript'></script> -->
-
 </body>
 
 </html>

@@ -3,19 +3,6 @@ body {
     font-family: -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
-// #app{
-//     display: grid;
-//     grid-auto-rows: minmax(150px, auto);
-//     /* grid-template-columns:  */
-//     height:100vh;
-//     background: #f23557;
-//     color: #f0d43a;
-//     justify-content: center;
-//     grid-gap: 1em;
-//     font-size: 20px;
-//     font-family: 'Oswald', sans-serif;
-// }
-
 .container {
     display: grid;
     height: 100%;
@@ -31,25 +18,14 @@ body {
     padding: 10px;
 }
 
-.holder{
+.holder {
     margin: auto;
     font-family: 'Oswald', sans-serif;
 }
 
-figcaption{
+figcaption {
     font-size: 24px;
 }
-
-// @media (min-width:600px) {
-//     .container {
-//       grid-template-columns: repeat(8, 1fr);
-//       grid-template-rows: 10px, repeat(10, 1fr);
-//       grid-template-areas:
-//         "hd hd hd hd hd hd hd hd"
-//         "nav main main main main main main about"
-//         "ft ft ft ft ft ft ft ft";
-//     }
-//   }
 
 //Just one column across on small screens
 .place-search-grid {
@@ -89,37 +65,16 @@ figcaption{
 }
 
 //Grid for each trip
-.trip-box{
-    //display: flex;
+.trip-box {
     border: 2px solid black;
     box-shadow: 3px 3px rgba(128, 128, 128, 0.411);
     background-color: white;
     margin: 5px;
 }
 
-.trip-pic-figure{
+.trip-pic-figure {
     max-height: 250px;
 }
-
-// //3 columns for medium screens
-// @media (min-width:901px) {
-//     .trips-grid {
-//         grid-template-columns: 1fr 1fr;
-//     }
-// }
-
-
-// /*Flex container for each trip*/
-// .trip-flex {
-//     display: flex;
-//     flex-wrap: wrap;
-//     flex-direction: row;
-//     flex-flow: row wrap;
-//     height: 320px;
-//     border: 2px solid black;
-//     box-shadow: 3px 3px rgba(128, 128, 128, 0.411);
-//     margin: 5px;
-//   }
 
 //For trh trip pictures
 .trip-pic {
@@ -130,14 +85,13 @@ figcaption{
     width: 75%;
     height: auto;
     object-fit: contain;
-    //max-height: 200px;
     border: 1px solid black;
     margin: auto;
     align-self: center;
     box-shadow: 3px 3px rgba(128, 128, 128, 0.411);
 }
 
-.travel-date{
+.travel-date {
     margin-top: 0px;
     text-align: center;
     align-content: center;
@@ -173,23 +127,6 @@ figcaption{
 .ft-container {
     grid-area: ft;
 }
-
-
-/*For big and medium screens*/
-
-//   /*3 rows, nav on left small, small header and footer*/
-
-//   @media (min-width:600px) {
-//     .container {
-//       grid-template-columns: repeat(8, 1fr);
-//       grid-template-rows: 10px, repeat(10, 1fr);
-//       grid-template-areas:
-//         "title title title title title"
-//         "nav main main main main main main about"
-//         "ft ft ft ft ft ft ft ft";
-//     }
-//   }
-
 
 .entry {
     background: rgba(59, 74, 107, .4);
@@ -232,7 +169,7 @@ button {
     align-content: center;
 }
 
-#delete-trip-button{
+#delete-trip-button {
     width: 65px;
     height: 25px;
     background: rgb(129, 26, 26);
@@ -291,7 +228,7 @@ button:focus {
 
 }
 
-select{
+select {
     width: 12em;
 }
 
