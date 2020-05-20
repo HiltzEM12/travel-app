@@ -33,7 +33,7 @@ async function getPicData(term){
 
 
 function processPicUrl(url){
-    console.log('in process Pic URL',url)
+    //console.log('in process Pic URL',url)
     //Example
     // <figure>
     //     <figcaption class='holder'>place name</figcaption>
