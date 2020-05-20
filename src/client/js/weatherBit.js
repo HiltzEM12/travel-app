@@ -69,21 +69,33 @@ async function createCurrentFrag(arr){
 async function createForcastFrag(arr){
     //console.log('in createForcastFrag');
     let docFrag = document.createDocumentFragment(); // Document frag to add to
-    console.log(arr)
+    //console.log(arr)
     let fLength = arr[0].length;  //Forcast day length
     //console.log(arr)
     const head = document.createElement('div'); // forcase header div
     head.textContent = fLength + '-Day Forecast';
     docFrag.appendChild(head);
-    for(let i = 0; i < arr.lenght; i++){
-        await createforcastBox(arr[0][i]);
+    for(let i = 0; i < arr[0].length; i++){
+        //let forcast = await createforcastBox(arr[0][i]);
+        let forcast = await createforcastBox(arr[0][i]);
+        head.appendChild(forcast);
     }
     return docFrag;
 }
 
-// Creates teh box to use to add to the forcast section
+// Creates the box to use to add to the forcast section
 async function createforcastBox(txt){
+    let docFrag = document.createDocumentFragment(); // Document frag to add to
+    console.log(txt.weatherDate);
+    console.log(txt.minTemp);
+    console.log(txt.maxTemp);
+    console.log(txt.precip);
+    console.log(txt.desc);
     console.log(txt);
+    const forcast = document.createElement('div'); // forcast div
+    forcast.textContent = 'test'
+    docFrag.appendChild(forcast);
+    return docFrag;
 }
 
 
