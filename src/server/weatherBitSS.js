@@ -157,6 +157,7 @@ async function processCurrentData(res){
 
 
 module.exports = {
+    dayDiff,
     getWeatherData,
 };
 
