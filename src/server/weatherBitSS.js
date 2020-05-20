@@ -59,6 +59,7 @@ async function getForcastData(tripDate, lat, lng){
     let forcastData = [];  // Data to return
     //Get the differences in days between now and the time of the trip
     const dateDiff = dayDiff(new Date(tripDate),new Date());
+    //console.log('getForcastData',dateDiff)
     //Get the forcast data if trip is within 15 days
     //16 days is the max forecast (includes current day)
     if(dateDiff <= 15){
@@ -69,7 +70,7 @@ async function getForcastData(tripDate, lat, lng){
             .then(async function(res) { 
                 //Process results then return
                 if('data' in res && res.data.length > 0){
-                    forcastData = await processForcastData(res.data);
+                    forcastData = await processForcastData(res.data,tripDate);
                 }
             })
         }
@@ -80,27 +81,31 @@ async function getForcastData(tripDate, lat, lng){
     return forcastData;
 };
 
-async function processForcastData(res){
+async function processForcastData(res,tripDate){
     const forcastDetials = []; // Array to store the place details
     // Go through the given array and create readable place names and get lat and lon
     for(let i = 0; i < res.length; i++){
-        let weatherDate = res[i].valid_date;
+        let weatherDate = res[i].valid_date +'T00:00';
         let maxTemp = res[i].max_temp;
         let minTemp = res[i].min_temp;
         let precip = res[i].pop; //Probability of Precipitation
         let desc = res[i].weather.description;
         let wIcon = res[i].weather.icon; // Weather description icon (i.e. https://www.weatherbit.io/static/img/icons/t01d.png)
-
-        forcastDetials.push(
-            {
-                weatherDate: weatherDate, 
-                maxTemp: maxTemp, 
-                minTemp: minTemp,
-                precip: precip,
-                desc: desc,
-                wIcon: wIcon
-            }
-        )
+        diffDays = dayDiff(new Date(weatherDate),new Date(tripDate));
+        //console.log('processForcastData',new Date(weatherDate),new Date(tripDate), diffDays)
+        //Only process the forcast data of a 3 day window (could be less is in the 15th or 16th day of the forcast range)
+        if(diffDays < 2 && diffDays >= 0){
+            forcastDetials.push(
+                {
+                    weatherDate: weatherDate, 
+                    maxTemp: maxTemp, 
+                    minTemp: minTemp,
+                    precip: precip,
+                    desc: desc,
+                    wIcon: wIcon
+                }
+            )
+        }
     }
     return forcastDetials;
 }

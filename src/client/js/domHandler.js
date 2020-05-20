@@ -108,7 +108,7 @@ async function createDepartureFrag(){
     const docFrag = document.createDocumentFragment(); //Docfrag to add to then append to the doc
     const mainDiv = document.createElement('div'); //Main trip box div
     mainDiv.classList.add('travel-date');
-    let departureDate = dateFormat(departure.value, 'fullDate');
+    let departureDate = dateFormat(departure.value +'T00:00', 'fullDate');
     mainDiv.textContent = 'Departure Date: ' + departureDate;
 
     //Add the delete button next to the date

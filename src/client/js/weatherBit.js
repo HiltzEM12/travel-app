@@ -1,8 +1,5 @@
 // JavaScript file for handling the objects returned from weatehrbit.io
 
-// Current weather div
-const currentWeatherDisp = document.getElementById('current-weather'); //Chnage this when it goes live.  For testing only
-
 // Function to get the data.
 // Argument is an object with a lat, lon, and date
 async function getWeatherBitData(txt){
@@ -60,7 +57,7 @@ async function createCurrentFrag(arr){
     //console.log('in createCurrentFrag');
     // //Add a div for each field
     const cur = document.createElement('div'); // temperature div
-    cur.textContent = 'Current Weather: feels like ' + arr[0].temp + ' F with ' + arr[0].desc.toLowerCase();
+    cur.textContent = 'Current Weather: feels like ' + arr[0].temp + ' °F with ' + arr[0].desc.toLowerCase();
     docFrag.appendChild(cur);
 
     return docFrag;
@@ -72,7 +69,7 @@ async function createCurrentFrag(arr){
 async function createForcastFrag(arr){
     //console.log('in createForcastFrag');
     let docFrag = document.createDocumentFragment(); // Document frag to add to
-
+    //console.log(arr)
     const temp = document.createElement('div'); // temperature div
     temp.textContent = '3-Day Forecast';
     docFrag.appendChild(temp);
