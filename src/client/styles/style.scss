@@ -154,13 +154,9 @@ figcaption{
 }
 
 //For the forcast display
-.forecast-weather {
-    display: flex;
+.forecast-weather-box {
+    display: grid;
 }
-
-
-
-
 
 .title-container {
     grid-area: title;
@@ -240,6 +236,14 @@ button {
 
 h1 {
     font-size: 36px;
+    text-align: center;
+    margin: 2px;
+}
+
+h2 {
+    font-size: 28px;
+    text-align: center;
+    margin: 2px;
 }
 
 textarea {

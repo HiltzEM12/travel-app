@@ -54,7 +54,7 @@ async function travelButtonClick(event) {
                 name: placeDetails.name
             });
 
-            console.log('1 await Client.getWeatherBitData')
+            //console.log('1 await Client.getWeatherBitData')
             //Get the weather info.  Returns doc frag
             let weatherDocFrag = await Client.getWeatherBitData({
                 date: departure.value +'T00:00' , //Added the time to the date to avoid UTC issues
