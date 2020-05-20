@@ -40,7 +40,7 @@ async function getWeatherData(tripDate, lat, lng){
         })
 
         // Get current weather data
-        await getcurrentData(lat, lng)
+        await getCurrentData(lat, lng)
         .then(function(res){
             currentData =  res;
         })
@@ -59,8 +59,9 @@ async function getForcastData(tripDate, lat, lng){
     let forcastData = [];  // Data to return
     //Get the differences in days between now and the time of the trip
     const dateDiff = dayDiff(new Date(tripDate),new Date());
-    //Get the forcast data if trip is within 16 days
-    if(dateDiff <= 16){
+    //Get the forcast data if trip is within 15 days
+    //16 days is the max forecast (includes current day)
+    if(dateDiff <= 15){
         const forcastURL = weatherForcastURL + '?&lat=' + lat + '&lon=' + lng +'&key=' + weatherKey + '&units=I';
         try{
             await fetch(forcastURL) //Call to the api
@@ -115,7 +116,7 @@ function dayDiff(date1,date2){
 };
 
 //Function to get the current weather of an area
-async function getcurrentData(lat, lng){
+async function getCurrentData(lat, lng){
     let currentData = [];  // Data to return
     //Get the forcast data if trip is within 16 days
         const currentURL = weatherCurrentURL + '?&lat=' + lat + '&lon=' + lng +'&key=' + weatherKey + '&units=I';
@@ -130,7 +131,7 @@ async function getcurrentData(lat, lng){
             })
         }
         catch (error){
-            console.log('error in getcurrentData', error);
+            console.log('error in getCurrentData', error);
         }
     return currentData;
 };
