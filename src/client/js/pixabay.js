@@ -40,7 +40,7 @@ async function processPicUrl(url){
         //Create html chunck to add to the card
         const fig = document.createElement('figure');
         const figCap = document.createElement('figureCaption');
-        figCap.classList.add('holder');
+        //figCap.classList.add('holder');
         figCap.textContent = `Trip to: ${place}`;
         fig.appendChild(figCap);
         const img = document.createElement('img');

@@ -50,7 +50,7 @@ async function getPics(name, adminName1, countryName){
     //Go through each search until something is returned or all have been searched
     for(let i = 0; i < terms.length && rtn.length === 0; i++){
         let apiURL = apiURLStart + terms[i] + apiURLEnd;
-        //console.log(terms[i])
+        //console.log(apiURL)
         try {
             // Call the GEO API
             await fetch(apiURL)

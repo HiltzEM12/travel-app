@@ -81,12 +81,16 @@ const tripGrid = document.getElementById('trip-grid-div');
 
 // Function to create the trip box docfrag to add to the document
 // Arguments are the weather and picture html to add
-function createTripBox(picDocFrag, weatherDocFrag){
+async function createTripBox(picDocFrag, weatherDocFrag){
 
     const docFrag = document.createDocumentFragment(); //Docfrag to add to then append to the doc
     const mainDiv = document.createElement('div'); //Main trip box div
     mainDiv.classList.add('trip-box');
+    mainDiv.classList.add('holder');
     mainDiv.appendChild(picDocFrag); //Add the picture
+
+    let departFrag = await createDepartureFrag();
+    mainDiv.appendChild(departFrag); //Add the departure date
 
     // Add the main div of the card to the docFrag to add
     docFrag.appendChild(mainDiv);
@@ -94,10 +98,17 @@ function createTripBox(picDocFrag, weatherDocFrag){
     // Add to the document
     tripGrid.appendChild(docFrag);
 
-}
+};
 
-export { 
-    setDates
+//Creates a doc frag to display the departure date
+function createDepartureFrag(){
+    const docFrag = document.createDocumentFragment(); //Docfrag to add to then append to the doc
+    const mainDiv = document.createElement('div'); //Main trip box div
+    mainDiv.classList.add('travel-date');
+    let departureDate = dateFormat(departure.value, 'fullDate');
+    mainDiv.textContent = 'Departure Date: ' + departureDate;
+    docFrag.appendChild(mainDiv);
+    return docFrag;
 };
 
 // Clears out the user input fields to prepare for another trip
@@ -105,4 +116,10 @@ function clearFields(){
     placeDD.innerHTML = '';
     placeNameField.value = '';
     departure.value = '';
-}
+};
+
+
+export { 
+    setDates
+};
+
