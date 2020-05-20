@@ -1,11 +1,11 @@
 // Import needed functions
 import { getGeoAPIData } from './js/geoNames';
-import { getForcastData } from './js/weatherBit';
+import { getWeatherBitData } from './js/weatherBit';
 import { getPicData } from './js/pixabay';
-import { placeButtonClick } from './js/domHandler';
-import { updatePlaceDD } from './js/domHandler';
+//import { placeButtonClick } from './js/domHandler';
+//import { updatePlaceDD } from './js/domHandler';
 import { setDates } from './js/domHandler';
-import { travelButtonClick } from './js/domHandler';
+//import { travelButtonClick } from './js/domHandler';
 //import { updateWeather } from './js/domHandler';
 //import { cityTest } from './media/testCity.jpg';
 
@@ -14,12 +14,12 @@ import './styles/style.scss'
 
 //Export functions to use
 export {
-    placeButtonClick,
     getGeoAPIData,
-    updatePlaceDD,
+    //getGeoAPIData,
+    //updatePlaceDD,
     setDates,
-    travelButtonClick,
-    getForcastData,
+    //travelButtonClick,
+    getWeatherBitData,
     //updateWeather,
     getPicData
 }
