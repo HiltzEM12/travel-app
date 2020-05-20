@@ -5,7 +5,7 @@ const picBox = document.getElementById("test-pic");  //Chnage this when it goes 
 // Function to get the data.
 // Argument is a JSON string with search terms
 async function getPicData(term){
-    //console.log('in getPicData')
+    const docFrag = document.createDocumentFragment(); // Document frag to return
     //Post to the server with the search term as an argument
     try{
     const res = await fetch('/pic', {
@@ -29,6 +29,7 @@ async function getPicData(term){
     catch(error){
         console.log('error in getPicData: ', error)
     }
+    return docFrag;
 };
 
 
@@ -39,11 +40,10 @@ function processPicUrl(url){
     //     <figcaption class='holder'>place name</figcaption>
     //     <img src='https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?ixlib=rb-1.2.1&w=1000&q=80' alt='place name' class='trip-pic'>
     // </figure>
+    const docFrag = document.createDocumentFragment(); // Document frag to add to
     if(url){ //Make sure there was a url given
 
         //picBox.innerHTML = '';  //Clear out old.  Only needed in testin
-
-        const docFrag = document.createDocumentFragment(); // Document frag to add to
 
         const fig = document.createElement('figure');
         const figCap = document.createElement('figureCaption');
@@ -57,8 +57,8 @@ function processPicUrl(url){
         fig.appendChild(img);
         docFrag.appendChild(fig);
         picBox.appendChild(docFrag);
-
     }
+    return docFrag;
 }
 
 

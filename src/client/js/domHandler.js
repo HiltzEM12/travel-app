@@ -3,12 +3,6 @@
 // Use for formatting dates
 const dateFormat = require('dateformat');
 
-// // Add listener to the place search button
-// document.getElementById('search-place-button').addEventListener('click', Client.placeButtonClick);
-
-// // Place field
-// const placeNameField = document.getElementById('place-search-txt');
-
 // Place dropdown
 const placeDD = document.getElementById('place-dropdown');
 
@@ -30,37 +24,6 @@ const departure = document.getElementById('departure');
 
 // Add listener to the place search button
 document.getElementById('get-travel-info').addEventListener('click', travelButtonClick);
-
-// // Function to handle what to do when the place search button is clicked
-// function placeButtonClick(event) {
-//     //Search for a place and let the user selct from the results
-//     Client.getGeoAPIData(placeNameField.value);
-// };
-
-// // Add an array of place names to the place drop down
-// // Argument should be an array of objects
-// async function updatePlaceDD(arr){
-
-//     //1st clear out the old list
-//     placeDD.innerHTML = '';
-//     if(arr.length > 0){ // Only process if there's something in the array
-//         const docFrag = document.createDocumentFragment(); // Document frag to add to
-//         arr.sort((x,y) => (x.displayName > y.displayName) ? 1 : -1); // Sort the array by place name 
-
-//         for (let i = 0; i < arr.length; i++) {
-//             const opItem = document.createElement('option'); // Create the new option
-//             opItem.value = '{ "lat": ' + arr[i].lat 
-//                             +', "lng": ' + arr[i].lng 
-//                             +', "adminName1": "' + arr[i].adminName1 
-//                             +'", "countryName": "' + arr[i].countryName 
-//                             +'", "name": "' + arr[i].name 
-//                             + '"}'; // Add the values in a json string
-//             opItem.textContent = arr[i].displayName;  // Add the place name as the text
-//             docFrag.appendChild(opItem); // Add the item to the doc frag
-//         }
-//         placeDD.appendChild(docFrag);
-//     }    
-// };
 
 //Sets the min and max dates for the departure date clicker
 function setDates(){
@@ -108,8 +71,5 @@ function travelButtonClick(event) {
 };
 
 export { 
-    //updatePlaceDD,
-    //placeButtonClick,
-    //travelButtonClick,
     setDates
 };
