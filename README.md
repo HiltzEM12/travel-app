@@ -22,6 +22,8 @@ If the trip is in the future, you will get a predicted forecast.
 ```
 - I interpreted this to mean, get the current weather of the location and get the forcast if the trip is within 16 days.  There's no forcast pst 16 days
 9. Create a card to add to the document that displays the trip date, weather, a picture, and the forcast if applicable
+10. Refactored and formatted code
+11. Created and ran a few jest tests
 
 
 ## Exteded options
