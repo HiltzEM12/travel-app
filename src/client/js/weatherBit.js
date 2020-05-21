@@ -101,5 +101,6 @@ async function createforcastBox(txt) {
 }
 
 export {
+    createCurrentFrag,
     getWeatherBitData
 };
