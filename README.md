@@ -38,6 +38,7 @@ Tips:
   - Ctrl+C stops a server when running in the terminal
   - To run the Express server use:
     - npm run start
+  - Remeber to use the argument --save-dev when installing packages via npm
 
 Getting started:
 ** Run as admin
