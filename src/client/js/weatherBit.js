@@ -80,6 +80,7 @@ async function createForcastFrag(arr) {
 // Creates the box to use to add to the forcast section
 async function createforcastBox(txt) {
     let docFrag = document.createDocumentFragment();
+    const forcast = document.createElement('div');
     forcast.classList.add('forecast-weather-box');
     const fDate = document.createElement('div');
     fDate.textContent = dateFormat(txt.weatherDate, 'mmm dd yyyy');
