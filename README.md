@@ -3,6 +3,9 @@
 ## Overview
 This project requires you to create an asynchronous web app that uses Web API and user data to dynamically update the UI. 
 
+## Variable notes
+NOTE that you must change the donenv variables.  See the .end.example file for detials
+
 ## Building process
 
 1. Set up the folders, create config files, install
